@@ -1,6 +1,13 @@
 import MagicMomentsSection from "./components/MagicMomentsSection";
 import { AnimatedBox, AnimatedButton, AnimatedSection, fadeUpVariant, hoverLift } from "./components/AnimatedSection";
+import Experience from "./components/Experience";
 import Hero from "./components/Hero";
+
+const statsCards = [
+  { value: "15+", label: "anni di esperienza" },
+  { value: "1000+", label: "spettacoli" },
+  { value: "migliaia", label: "di sorrisi" },
+];
 
 const shows = [
   {
@@ -40,53 +47,7 @@ export default function Home() {
     <div className="min-h-full bg-black text-white">
       <Hero />
 
-      <section className="border-t border-white/10 bg-black px-6 py-20 sm:px-10 lg:px-14">
-        <div className="mx-auto max-w-6xl space-y-12">
-          <div className="max-w-3xl space-y-5">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/85">L'ESPERIENZA</p>
-            <h2 className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-              Ogni spettacolo racconta una storia.
-            </h2>
-            <p className="text-lg leading-8 text-white/70 sm:text-xl">
-              Non è soltanto magia. È un viaggio fatto di risate, stupore ed emozioni che coinvolge bambini e adulti.
-            </p>
-          </div>
-
-          <div className="space-y-5">
-            {[
-              {
-                icon: "🎭",
-                title: "Comicità",
-                text: "Risate vere, improvvisazione e coinvolgimento continuo del pubblico.",
-              },
-              {
-                icon: "✨",
-                title: "Meraviglia",
-                text: "Magia elegante, tecnologia e teatro si fondono in uno spettacolo sorprendente.",
-              },
-              {
-                icon: "❤️",
-                title: "Emozione",
-                text: "Il finale con le bolle di sapone trasforma gli ultimi minuti in un ricordo da portare a casa.",
-              },
-            ].map((card, index) => (
-              <article
-                key={card.title}
-                className="group flex flex-col gap-6 rounded-[30px] border border-white/10 bg-gradient-to-r from-[#121212] via-black to-[#101010] p-8 shadow-[0_12px_50px_rgba(0,0,0,0.28)] transition duration-300 hover:-translate-y-1 hover:border-[#d4af37]/30 hover:shadow-[0_16px_60px_rgba(212,175,55,0.10)] sm:flex-row sm:items-center sm:gap-8 sm:p-10"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#d4af37]/20 bg-[#d4af37]/10 text-3xl text-[#d4af37] transition duration-300 group-hover:scale-105 sm:h-20 sm:w-20">
-                  {card.icon}
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold text-white">{card.title}</h3>
-                  <p className="max-w-2xl text-base leading-7 text-white/70 sm:text-lg">{card.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Experience />
 
       <AnimatedSection
         className="bg-black px-6 py-14 sm:px-10 lg:px-14"
@@ -205,7 +166,7 @@ export default function Home() {
       <section className="border-t border-white/10 bg-black/95 px-6 py-16 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl space-y-10">
           <div className="grid gap-6 lg:grid-cols-3">
-            {stats.map((item) => (
+            {statsCards.map((item) => (
               <div key={item.label} className="rounded-[36px] border border-white/10 bg-white/5 p-10 text-center shadow-stage backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-[#d4af37]/30 hover:bg-white/10">
                 <p className="text-5xl font-semibold text-[#d4af37] sm:text-6xl">{item.value}</p>
                 <p className="mt-6 text-lg uppercase tracking-[0.2em] text-white/75">{item.label}</p>
