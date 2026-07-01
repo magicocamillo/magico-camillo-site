@@ -105,6 +105,45 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
+      <section className="border-t border-white/10 bg-black px-6 py-16 sm:px-10 lg:px-14">
+        <div className="mx-auto max-w-6xl space-y-10">
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/85">Perché scegliere Magico Camillo</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              Un’esperienza elegante, coinvolgente e memorabile.
+            </h2>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                title: "15+ anni di esperienza",
+                text: "Spettacoli per famiglie, hotel, teatri, piazze ed eventi in tutta Italia.",
+              },
+              {
+                title: "Uno spettacolo completo",
+                text: "Magia comica, teatro, musica, tecnologia, interazione e poesia.",
+              },
+              {
+                title: "Finale emozionante",
+                text: "Le bolle di sapone trasformano gli ultimi minuti in un momento da ricordare.",
+              },
+            ].map((card) => (
+              <article
+                key={card.title}
+                className="group rounded-[28px] border border-white/10 bg-gradient-to-br from-[#111111] via-black to-[#0b0b0b] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-1 hover:border-[#d4af37]/40 hover:shadow-[0_20px_70px_rgba(212,175,55,0.14)]"
+              >
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-[#d4af37]/20 bg-[#d4af37]/10 text-xl text-[#d4af37]">
+                  ✦
+                </div>
+                <h3 className="text-xl font-semibold text-white">{card.title}</h3>
+                <p className="mt-4 text-base leading-7 text-white/70">{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <AnimatedSection
         className="bg-black px-6 py-14 sm:px-10 lg:px-14"
         initial="hidden"
