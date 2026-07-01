@@ -10,10 +10,10 @@ function getGalleryImages() {
   }
 
   return fs
-    .readdirSync(galleryDir)
-    .filter((file) => /\.(jpe?g|png|webp|avif|gif)$/i.test(file))
-    .sort()
-    .map((file) => `/images/gallery/${file}`);
+    .readdirSync(galleryDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && /\.(jpe?g|png|webp|avif|gif)$/i.test(entry.name))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((entry) => `/images/gallery/${entry.name}`);
 }
 
 export default function MagicMomentsSection() {
