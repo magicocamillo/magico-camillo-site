@@ -17,6 +17,19 @@ const overlayVariants = {
   visible: { opacity: 1 },
 };
 
+const galleryObjectPositions: Record<string, string> = {
+  "gallery 01.jpeg": "center 20%",
+  "gallery 02.jpeg": "center 35%",
+  "gallery 03.jpeg": "center top",
+  "gallery 04.jpeg": "center 25%",
+  "gallery 05.jpeg": "center 30%",
+  "gallery 06.jpeg": "center 15%",
+  "gallery 07.jpeg": "center top",
+  "gallery 08.jpeg": "center 28%",
+  "gallery 09.jpeg": "center 22%",
+  "gallery 10.jpeg": "center 18%",
+};
+
 const getItemClass = (index: number) => {
   const classes = [
     "lg:col-span-4 lg:row-span-2",
@@ -67,12 +80,9 @@ export default function MagicMoments({ images }: MagicMomentsProps) {
                   src={src}
                   alt={`Momento di magia ${index + 1}`}
                   loading="lazy"
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover object-center [object-position:50%_20%] transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 transition duration-500 group-hover:opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-left">
-                  <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">Momento di magia</p>
-                </div>
               </motion.button>
             ))}
           </div>
