@@ -1,13 +1,12 @@
 import Link from "next/link";
 
 const navItems = [
-  { label: "Home", href: "/" },
   { label: "Chi sono", href: "/chi-sono" },
   { label: "Spettacoli", href: "/spettacoli" },
-  { label: "Galleria Foto", href: "/galleria-foto" },
+  { label: "Galleria", href: "/galleria-foto" },
   { label: "Video", href: "/video" },
+  { label: "Calendario", href: "/calendario-eventi" },
   { label: "Boutique", href: "/boutique" },
-  { label: "Calendario Eventi", href: "/calendario-eventi" },
   { label: "Contatti", href: "/contatti" },
 ];
 

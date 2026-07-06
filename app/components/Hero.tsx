@@ -54,9 +54,8 @@ export default function Hero() {
           <StatsBar />
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[560px] items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-[#d4af37]/15 blur-[140px]" />
-          <div className="absolute inset-6 rounded-full border border-[#d4af37]/20" />
+        <div className="relative mx-auto flex w-full max-w-[720px] items-center justify-center">
+          <div className="absolute inset-0 rounded-full bg-[#d4af37]/10 blur-[80px]" />
           <div className="absolute inset-0">
             {[...Array(7)].map((_, index) => (
               <div
@@ -71,10 +70,15 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="relative w-full overflow-hidden rounded-[40px] bg-gradient-to-br from-white/10 via-white/5 to-transparent p-2 shadow-[0_0_80px_rgba(212,175,55,0.12)] backdrop-blur-xl">
+          <div className="relative w-full overflow-hidden rounded-[40px] bg-gradient-to-br from-white/10 via-white/5 to-transparent p-1 shadow-[0_0_40px_rgba(212,175,55,0.06)] backdrop-blur-xl">
             <div className="relative overflow-hidden rounded-[32px]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.16),_transparent_60%)]" />
-              <img src="/images/hero.jpg" alt="Magico Camillo" className="h-[580px] w-full object-cover object-center" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.06),_transparent_60%)]" />
+              <img
+                src="/images/gallery/gallery 10.jpeg"
+                alt="Magico Camillo"
+                className="w-full object-cover"
+                style={{ height: '760px', objectPosition: 'center 36%' }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
             </div>
           </div>
