@@ -54,8 +54,9 @@ export default function Hero() {
           <StatsBar />
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[720px] items-center justify-center">
+        <div className="relative mx-auto flex w-full max-w-[1024px] items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#d4af37]/10 blur-[80px]" />
+          <div className="absolute -z-10 left-1/2 top-1/2 w-[520px] h-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4af37]/8 blur-3xl opacity-20 pointer-events-none sm:w-[720px] sm:h-[720px] lg:w-[920px] lg:h-[920px]" />
           <div className="absolute inset-0">
             {[...Array(7)].map((_, index) => (
               <div
@@ -70,14 +71,14 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="relative w-full overflow-hidden rounded-[40px] bg-gradient-to-br from-white/10 via-white/5 to-transparent p-1 shadow-[0_0_40px_rgba(212,175,55,0.06)] backdrop-blur-xl">
-            <div className="relative overflow-hidden rounded-[32px]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.06),_transparent_60%)]" />
+          <div className="relative w-full overflow-visible rounded-[28px] p-0 backdrop-blur-xl">
+            <div className="relative overflow-visible rounded-[24px]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.04),_transparent_60%)]" />
               <img
                 src="/images/gallery/gallery 10.jpeg"
                 alt="Magico Camillo"
-                className="w-full object-cover"
-                style={{ height: '760px', objectPosition: 'center 36%' }}
+                className="w-full object-cover transform origin-center scale-110 sm:scale-110 lg:scale-[1.4] transition-transform duration-500"
+                style={{ objectPosition: 'center 36%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
             </div>
