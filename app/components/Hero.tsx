@@ -24,7 +24,7 @@ export default function Hero() {
         <div className="relative z-10 max-w-2xl space-y-8">
           <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">MAGICO CAMILLO</p>
           <div className="space-y-6">
-            <h1 className="text-5xl font-semibold leading-[0.95] text-white sm:text-6xl xl:text-7xl">
+            <h1 className="text-6xl font-semibold leading-[0.95] text-white sm:text-7xl xl:text-8xl">
               La magia che emoziona,
               <br />
               fa ridere
@@ -45,7 +45,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/spettacoli"
-              className="inline-flex items-center justify-center rounded-full bg-[#d4af37] px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-[#e6c95f] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+              className="inline-flex items-center justify-center rounded-full bg-[#d4af37] px-10 py-5 text-sm font-semibold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-[#e6c95f] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
             >
               Richiedi un preventivo
             </Link>
@@ -56,7 +56,7 @@ export default function Hero() {
 
         <div className="relative mx-auto flex w-full max-w-[1024px] items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-[#d4af37]/10 blur-[80px]" />
-          <div className="absolute -z-10 left-1/2 top-1/2 w-[520px] h-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4af37]/8 blur-3xl opacity-20 pointer-events-none sm:w-[720px] sm:h-[720px] lg:w-[920px] lg:h-[920px]" />
+          <div className="absolute -z-10 left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4af37]/12 blur-3xl opacity-40 pointer-events-none sm:h-[720px] sm:w-[720px] lg:h-[920px] lg:w-[920px]" />
           <div className="absolute inset-0">
             {[...Array(7)].map((_, index) => (
               <div
@@ -71,14 +71,13 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="relative w-full overflow-visible rounded-[28px] p-0 backdrop-blur-xl">
-            <div className="relative overflow-visible rounded-[24px]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.04),_transparent_60%)]" />
+          <div className="relative w-full max-w-[700px] overflow-visible">
+            <div className="relative overflow-hidden rounded-[24px]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.06),_transparent_60%)]" />
               <img
                 src="/images/gallery/gallery 10.jpeg"
                 alt="Magico Camillo"
-                className="w-full object-cover transform origin-center scale-110 sm:scale-110 lg:scale-[1.4] transition-transform duration-500"
-                style={{ objectPosition: 'center 36%' }}
+                className="h-[460px] w-full translate-y-6 object-cover object-[center_34%] transition-transform duration-500 sm:h-[560px] sm:translate-y-8 lg:h-[680px] lg:translate-y-12 lg:scale-[1.42]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
             </div>

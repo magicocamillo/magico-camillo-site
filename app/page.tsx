@@ -73,48 +73,6 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection
-        className="border-t border-white/10 bg-black px-6 py-16 sm:px-10 lg:px-14"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUpVariant}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.4fr_0.8fr] lg:items-center">
-          <AnimatedBox className="space-y-6 text-white" variants={fadeUpVariant}>
-            <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/85">Guarda il trailer</p>
-            <h2 className="text-4xl font-semibold text-white sm:text-5xl">Guarda il trailer dello spettacolo.</h2>
-            <p className="max-w-2xl text-lg leading-8 text-white/70">
-              Due minuti per scoprire l’universo del Magico Camillo.
-            </p>
-            <div className="rounded-[32px] border border-[#d4af37]/15 bg-[#111111]/80 p-6 shadow-stage">
-              <p className="text-sm uppercase tracking-[0.25em] text-[#d4af37]/70">Anteprima esclusiva</p>
-              <p className="mt-4 text-white/80">
-                Un assaggio di magia, umorismo e atmosfera che invita il pubblico ad alzare lo sguardo.
-              </p>
-            </div>
-          </AnimatedBox>
-
-          <AnimatedBox
-            className="relative overflow-hidden rounded-[32px] border border-white/10 bg-black/90 shadow-stage"
-            whileHover={hoverLift}
-          >
-            <div className="aspect-[16/9] bg-[url('/images/video-placeholder.jpg')] bg-cover bg-center" />
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <AnimatedButton
-                className="inline-flex h-20 w-20 items-center justify-center rounded-full border border-[#d4af37]/50 bg-[#d4af37]/10 text-white"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="ml-1 text-3xl">▶</span>
-              </AnimatedButton>
-            </div>
-          </AnimatedBox>
-        </div>
-      </AnimatedSection>
-
       <section className="border-t border-white/10 bg-black px-6 py-20 sm:px-10 lg:px-14">
         <div className="mx-auto max-w-6xl space-y-10">
           <div className="space-y-4 text-center">
