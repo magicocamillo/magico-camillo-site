@@ -3,87 +3,112 @@ import StatsBar from "./StatsBar";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 py-10 sm:px-10 lg:px-14">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.08),_transparent_20%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(0,0,0,0.3),_transparent_30%)]" />
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <section className="relative overflow-hidden bg-black">
+
+      {/* SFONDO */}
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.08),transparent_28%)]" />
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,0,0,0.55),transparent_45%)]" />
+
+      <div className="absolute inset-0 overflow-hidden">
+
         {[...Array(12)].map((_, index) => (
+
           <div
             key={index}
-            className="absolute h-1.5 w-1.5 rounded-full bg-[#d4af37]/30 blur-sm animate-float"
+            className="absolute h-2 w-2 rounded-full bg-[#d4af37]/25 blur-sm animate-float"
             style={{
-              top: `${6 + index * 8}%`,
-              left: `${(index * 11) % 94}%`,
+              top: `${5 + index * 8}%`,
+              left: `${(index * 11) % 96}%`,
               animationDelay: `${index * 0.35}s`,
             }}
           />
+
         ))}
+
       </div>
 
-      <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="relative z-10 max-w-2xl space-y-8">
-          <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">MAGICO CAMILLO</p>
-          <div className="space-y-6">
-            <h1 className="text-6xl font-semibold leading-[0.95] text-white sm:text-7xl xl:text-8xl">
-              La magia che emoziona,
-              <br />
-              fa ridere
-              <br />
-              e resta nel cuore.
-            </h1>
-            <p className="max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-              Da oltre 15 anni porto spettacoli di magia comica, teatro e poesia in Family Hotel, teatri, piazze e festival.
-            </p>
-          </div>
+      <div className="relative mx-auto flex min-h-[88vh] max-w-screen-2xl items-center px-8 py-10 lg:px-16">
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        {/* COLONNA SINISTRA */}
+
+        <div className="z-10 w-full max-w-2xl">
+
+          <h1 className="text-6xl font-semibold leading-[0.92] text-white sm:text-7xl xl:text-8xl">
+
+            La magia
+            <br />
+
+            che emoziona,
+            <br />
+
+            fa ridere
+            <br />
+
+            e resta
+            <br />
+
+            nel cuore.
+
+          </h1>
+
+          <p className="mt-10 max-w-xl text-xl leading-9 text-white/70">
+
+            Da oltre 15 anni porto spettacoli di magia,
+            comicità e poesia in Family Hotel,
+            teatri, scuole, piazze,
+            festival e grandi eventi.
+
+          </p>
+
+          <div className="mt-12 flex flex-wrap gap-5">
+
             <Link
               href="/video"
-              className="inline-flex items-center justify-center rounded-full border border-[#d4af37] bg-[#d4af37]/10 px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-[#d4af37] transition duration-300 hover:bg-[#d4af37]/20 hover:shadow-[0_0_30px_rgba(212,175,55,0.18)]"
+              className="rounded-full border border-[#d4af37] px-9 py-4 uppercase tracking-[0.18em] text-[#d4af37] transition hover:bg-[#d4af37]/15"
             >
               Guarda il trailer
             </Link>
+
             <Link
-              href="/spettacoli"
-              className="inline-flex items-center justify-center rounded-full bg-[#d4af37] px-10 py-5 text-sm font-semibold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-[#e6c95f] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+              href="/contatti"
+              className="rounded-full bg-[#d4af37] px-10 py-4 font-semibold uppercase tracking-[0.18em] text-black transition hover:scale-105"
             >
-              Richiedi un preventivo
+              Richiedi preventivo
             </Link>
+
           </div>
 
-          <StatsBar />
+          <div className="mt-14">
+
+            <StatsBar />
+
+          </div>
+
+        </div>
+                {/* FOTO */}
+
+        <div className="relative flex flex-1 items-end justify-end">
+
+          <div className="absolute right-8 top-1/2 h-[900px] w-[900px] -translate-y-1/2 rounded-full bg-[#d4af37]/10 blur-[120px]" />
+
+          <div className="absolute right-24 top-20 h-5 w-5 rounded-full bg-[#d4af37]/70 shadow-[0_0_30px_rgba(212,175,55,0.8)] animate-float" />
+
+          <div className="absolute right-80 top-44 h-3 w-3 rounded-full bg-[#d4af37]/70 shadow-[0_0_25px_rgba(212,175,55,0.8)] animate-float" />
+
+          <div className="absolute right-40 bottom-40 h-4 w-4 rounded-full bg-[#d4af37]/60 shadow-[0_0_25px_rgba(212,175,55,0.8)] animate-float" />
+
+          <img
+            src="/images/hero.jpg"
+            alt="Magico Camillo"
+            className="relative z-10 h-[92vh] w-auto object-contain object-bottom select-none"
+            draggable={false}
+          />
+
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-[1024px] items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-[#d4af37]/10 blur-[80px]" />
-          <div className="absolute -z-10 left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d4af37]/12 blur-3xl opacity-40 pointer-events-none sm:h-[720px] sm:w-[720px] lg:h-[920px] lg:w-[920px]" />
-          <div className="absolute inset-0">
-            {[...Array(7)].map((_, index) => (
-              <div
-                key={index}
-                className="absolute h-2 w-2 rounded-full bg-[#d4af37]/70 shadow-[0_0_12px_rgba(212,175,55,0.7)] animate-float"
-                style={{
-                  top: `${15 + index * 11}%`,
-                  left: `${12 + index * 10}%`,
-                  animationDelay: `${index * 0.25}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="relative w-full max-w-[700px] overflow-visible">
-            <div className="relative overflow-hidden rounded-[24px]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.06),_transparent_60%)]" />
-              <img
-                src="/images/gallery/gallery 10.jpeg"
-                alt="Magico Camillo"
-                className="h-[460px] w-full translate-y-6 object-cover object-[center_34%] transition-transform duration-500 sm:h-[560px] sm:translate-y-8 lg:h-[680px] lg:translate-y-12 lg:scale-[1.42]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
+          </section>
   );
 }
