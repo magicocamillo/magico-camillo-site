@@ -1,54 +1,85 @@
 export default function ChiSono() {
   return (
     <main className="px-6 py-20 sm:px-10 lg:px-14">
-      <div className="mx-auto max-w-6xl space-y-10">
-        <section className="rounded-[32px] border border-white/10 bg-white/5 p-10 shadow-stage backdrop-blur-xl">
-          <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/85">Chi sono</p>
-          <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
-            Magico Camillo: il mago comico per bambini e famiglie.
+      <div className="mx-auto max-w-6xl">
+
+        <section className="rounded-[40px] border border-white/10 bg-white/5 p-12 shadow-stage backdrop-blur-xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">
+            Chi sono
+          </p>
+
+          <h1 className="mt-6 text-5xl font-semibold leading-tight text-white sm:text-6xl">
+            Magico Camillo
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/70">
-            Dalla scena del Family Hotel alle piazze delle Pro Loco, dai teatri alle feste private, Magico Camillo porta sul palco magia, poesia e risate per tutte le età.
+
+          <p className="mt-10 max-w-4xl text-xl leading-9 text-white/70">
+            Da oltre quindici anni porto sui palchi di tutta Italia uno
+            spettacolo dove magia, comicità, teatro e tecnologia si uniscono
+            per creare un'esperienza coinvolgente per tutta la famiglia.
           </p>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-2">
-          <article className="rounded-[32px] border border-white/10 bg-black/60 p-8 shadow-stage">
-            <h2 className="text-2xl font-semibold text-white">Esperienza</h2>
-            <p className="mt-4 leading-8 text-white/70">
-              Oltre 10 anni di spettacoli per hotel, villaggi turistici, Pro Loco, teatri, piazze e feste private. Ogni evento è curato nei dettagli per una serata indimenticabile.
-            </p>
-          </article>
+        <section className="mt-16 grid gap-8 lg:grid-cols-2">
 
-          <article className="rounded-[32px] border border-white/10 bg-black/60 p-8 shadow-stage">
-            <h2 className="text-2xl font-semibold text-white">Stile</h2>
-            <p className="mt-4 leading-8 text-white/70">
-              Divertente, poetico e teatrale: numeri semplici ma sorprendenti, con bolle di sapone, momenti tecnologici e tanta complicità tra grandi e bambini.
-            </p>
-          </article>
-        </section>
+          <div className="rounded-[36px] border border-white/10 bg-black/60 p-10 shadow-stage">
+            <h2 className="text-3xl font-semibold text-white">
+              La mia storia
+            </h2>
 
-        <section className="grid gap-8 lg:grid-cols-3">
-          {[
-            {
-              title: "Family Hotel",
-              detail: "Spettacoli perfetti per l’animazione delle vacanze in famiglia.",
-            },
-            {
-              title: "Pro Loco e piazze",
-              detail: "Eventi pensati per comunità, festival e momenti di incontro.",
-            },
-            {
-              title: "Feste private",
-              detail: "Divertimento su misura per compleanni, cene e serate indimenticabili.",
-            },
-          ].map((card) => (
-            <div key={card.title} className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-stage transition hover:border-[#d4af37]/40">
-              <h3 className="text-xl font-semibold text-white">{card.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-white/70">{card.detail}</p>
+            <p className="mt-6 leading-8 text-white/70">
+              Ogni spettacolo nasce da una semplice idea:
+              far ridere, stupire ed emozionare grandi e bambini nello stesso
+              momento.
+            </p>
+
+            <p className="mt-6 leading-8 text-white/70">
+              Negli anni ho realizzato migliaia di spettacoli per Family Hotel,
+              Comuni, biblioteche, scuole, teatri, Pro Loco e feste private,
+              sviluppando uno stile personale riconoscibile.
+            </p>
+          </div>
+
+          <div className="rounded-[36px] border border-[#d4af37]/20 bg-[#d4af37]/5 p-10 shadow-stage">
+
+            <p className="text-sm uppercase tracking-[0.3em] text-[#d4af37]">
+              In numeri
+            </p>
+
+            <div className="mt-10 space-y-8">
+
+              <div>
+                <p className="text-5xl font-bold text-[#d4af37]">
+                  3000+
+                </p>
+                <p className="mt-2 text-white/70">
+                  spettacoli realizzati
+                </p>
+              </div>
+
+              <div>
+                <p className="text-5xl font-bold text-[#d4af37]">
+                  15+
+                </p>
+                <p className="mt-2 text-white/70">
+                  anni di esperienza
+                </p>
+              </div>
+
+              <div>
+                <p className="text-5xl font-bold text-[#d4af37]">
+                  Famiglie
+                </p>
+                <p className="mt-2 text-white/70">
+                  sorrisi ed emozioni ogni stagione
+                </p>
+              </div>
+
             </div>
-          ))}
+
+          </div>
+
         </section>
+
       </div>
     </main>
   );
