@@ -1,295 +1,418 @@
-import Link from "next/link";
-import SectionTitle from "./components/SectionTitle";
+"use client";
 
-const faqs = [
-  {
-    question: "Quanto dura lo spettacolo?",
-    answer:
-      "La durata media è di circa 55 minuti, pensata per mantenere alta l’attenzione del pubblico senza appesantire la serata.",
-  },
-  {
-    question: "Serve un impianto audio?",
-    answer:
-      "Sì, ma in forma professionale e semplice. In molti casi è sufficiente una configurazione base ben allestita, che possiamo indicare in fase di preventivo.",
-  },
-  {
-    question: "Lavori in tutta Italia?",
-    answer:
-      "Sì, collaboro con strutture ricettive, comuni, teatri, piazze e eventi privati in diverse località italiane.",
-  },
-  {
-    question: "Per quale età è adatto?",
-    answer:
-      "Gli spettacoli sono pensati per bambini, famiglie e pubblici misti, con un linguaggio accessibile e molto coinvolgente.",
-  },
-  {
-    question: "È possibile personalizzare lo spettacolo?",
-    answer:
-      "Assolutamente. Posso adattare il format al tipo di evento, alla location e alle esigenze del pubblico.",
-  },
-];
+import { FormEvent, useState } from "react";
 
-export default function Contatti() {
+type FormData = {
+  nome: string;
+  email: string;
+  telefono: string;
+  tipologiaEvento: string;
+  luogo: string;
+  dataEvento: string;
+  messaggio: string;
+};
+
+const initialFormData: FormData = {
+  nome: "",
+  email: "",
+  telefono: "",
+  tipologiaEvento: "",
+  luogo: "",
+  dataEvento: "",
+  messaggio: "",
+};
+
+export default function ContattiPage() {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [isSending, setIsSending] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleChange(
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) {
+    const { name, value } = event.target;
+
+    setFormData((previousData) => ({
+      ...previousData,
+      [name]: value,
+    }));
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    if (!formData.nome.trim()) {
+      setErrorMessage("Inserisci il tuo nome.");
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      setErrorMessage("Inserisci il tuo indirizzo email.");
+      return;
+    }
+
+    if (!formData.messaggio.trim()) {
+      setErrorMessage("Scrivi un messaggio.");
+      return;
+    }
+
+    try {
+      setIsSending(true);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          responseData?.error ||
+            "Non è stato possibile inviare il messaggio."
+        );
+      }
+
+      setSuccessMessage(
+        "Messaggio inviato correttamente. Ti risponderò appena possibile."
+      );
+
+      setFormData(initialFormData);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Si è verificato un errore durante l’invio."
+      );
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="relative overflow-hidden border-b border-white/10 px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.12),_transparent_35%)]" />
+    <main className="min-h-screen bg-black px-6 pb-24 pt-40 text-white sm:px-10 lg:px-14">
+      <div className="mx-auto max-w-7xl">
+        <section className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.04] px-6 py-14 shadow-2xl backdrop-blur-xl sm:px-10 lg:px-14 lg:py-20">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(212,175,55,0.15),_transparent_35%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.05),_transparent_35%)]" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-
-          <div className="max-w-3xl space-y-8">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">
+          <div className="relative max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
               Contatti
             </p>
 
-            <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Parliamo del tuo prossimo evento.
+            <h1 className="mt-6 text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-7xl">
+              Portiamo la magia
+              <span className="block text-[#d4af37]">
+                nel tuo prossimo evento
+              </span>
             </h1>
 
-            <p className="max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-              Che si tratti di un Family Hotel, di una piazza, di un teatro o di
-              una festa, sarò felice di aiutarti a creare uno spettacolo
-              indimenticabile.
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-white/70 sm:text-xl">
+              Raccontami dove, quando e per quale occasione desideri lo
+              spettacolo. Ti risponderò con tutte le informazioni necessarie
+              per organizzare un evento coinvolgente, divertente e adatto a
+              tutta la famiglia.
             </p>
           </div>
+        </section>
 
-          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-[0_0_70px_rgba(0,0,0,0.35)]">
-            <img
-              src="/images/camillo/hero.jpg"
-              alt="Magico Camillo in scena"
-              className="h-[420px] w-full object-cover object-center sm:h-[520px]"
-            />
+        <section className="mt-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="space-y-8">
+            <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 shadow-xl backdrop-blur-xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
+                Contatto diretto
+              </p>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
-          </div>
-        </div>
-      </section>
+              <h2 className="mt-5 text-3xl font-semibold text-white">
+                Parliamo del tuo evento
+              </h2>
 
-      <section className="px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <p className="mt-5 leading-7 text-white/65">
+                Puoi contattarmi direttamente tramite telefono o email.
+                Indica la data, la località e il tipo di evento per ricevere
+                una risposta più precisa.
+              </p>
 
-          <div className="rounded-[32px] border border-white/10 bg-black/70 p-8 shadow-[0_0_70px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-10">
-
-            <SectionTitle
-              eyebrow="Richiesta"
-              title="Invia la tua richiesta"
-              description="Compila il modulo e ti risponderò il prima possibile con disponibilità, format e informazioni utili."
-            />
-
-            <form className="mt-8 space-y-6">
-                            <div className="grid gap-6 md:grid-cols-2">
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Nome
-                  <input
-                    type="text"
-                    placeholder="Il tuo nome"
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Email
-                  <input
-                    type="email"
-                    placeholder="tuo@email.it"
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Telefono
-                  <input
-                    type="tel"
-                    placeholder="+39 333 1234567"
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Data evento
-                  <input
-                    type="date"
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Località
-                  <input
-                    type="text"
-                    placeholder="Località"
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-
-                <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                  Tipo di evento
-                  <input
-                    type="text"
-                    placeholder="Family Hotel, Teatro..."
-                    className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                  />
-                </label>
-              </div>
-
-              <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                Numero indicativo di partecipanti
-                <input
-                  type="number"
-                  placeholder="50"
-                  className="mt-3 block w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                />
-              </label>
-
-              <label className="block text-sm font-semibold uppercase tracking-[0.25em] text-[#d4af37]/85">
-                Messaggio
-                <textarea
-                  placeholder="Raccontami il tuo evento e cosa desideri..."
-                  className="mt-3 block h-40 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/20"
-                />
-              </label>
-
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#d4af37] px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-[#e6c95f]"
-              >
-                Richiedi disponibilità
-              </button>
-
-            </form>
-          </div>
-                    <div className="rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,_rgba(212,175,55,0.16),_rgba(0,0,0,0.9))] p-8 shadow-[0_0_70px_rgba(212,175,55,0.12)] backdrop-blur-xl sm:p-10">
-
-            <SectionTitle
-              eyebrow="Contatti rapidi"
-              title="Parliamo subito"
-              description="Puoi scrivermi direttamente o contattarmi telefonicamente per organizzare il tuo evento."
-            />
-
-            <div className="mt-8 space-y-6 text-white/80">
-
-              <div className="rounded-[24px] border border-white/10 bg-black/40 p-6">
-                <p className="text-2xl">📞</p>
-
-                <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#d4af37]/80">
-                  Telefono
-                </p>
-
+              <div className="mt-8 space-y-5">
                 <a
                   href="tel:+393313712666"
-                  className="mt-2 block text-lg text-white transition hover:text-[#d4af37]"
+                  className="group block rounded-2xl border border-white/10 bg-black/30 p-5 transition hover:border-[#d4af37]/60 hover:bg-[#d4af37]/5"
                 >
-                  +39 331 3712666
+                  <p className="text-sm uppercase tracking-[0.25em] text-white/45">
+                    Telefono
+                  </p>
+
+                  <p className="mt-2 text-xl font-semibold text-white transition group-hover:text-[#d4af37]">
+                    +39 331 3712666
+                  </p>
                 </a>
-              </div>
-
-              <div className="rounded-[24px] border border-white/10 bg-black/40 p-6">
-                <p className="text-2xl">📧</p>
-
-                <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#d4af37]/80">
-                  Email
-                </p>
 
                 <a
                   href="mailto:magicocamillo@me.com"
-                  className="mt-2 block break-all text-lg text-white transition hover:text-[#d4af37]"
+                  className="group block rounded-2xl border border-white/10 bg-black/30 p-5 transition hover:border-[#d4af37]/60 hover:bg-[#d4af37]/5"
                 >
-                  magicocamillo@me.com
+                  <p className="text-sm uppercase tracking-[0.25em] text-white/45">
+                    Email
+                  </p>
+
+                  <p className="mt-2 break-all text-xl font-semibold text-white transition group-hover:text-[#d4af37]">
+                    magicocamillo@me.com
+                  </p>
                 </a>
               </div>
-
-              <div className="rounded-[24px] border border-white/10 bg-black/40 p-6">
-                <p className="text-2xl">📍</p>
-
-                <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#d4af37]/80">
-                  Trentino - Italia
-                </p>
-
-                <p className="mt-2 text-lg text-white">
-                  Disponibile in tutta Italia
-                </p>
-              </div>
-
-              <div className="rounded-[24px] border border-white/10 bg-black/40 p-6">
-                <p className="text-2xl">🕒</p>
-
-                <p className="mt-3 text-sm uppercase tracking-[0.3em] text-[#d4af37]/80">
-                  Risposta
-                </p>
-
-                <p className="mt-2 text-lg text-white">
-                  Entro 24 ore
-                </p>
-              </div>
-
             </div>
 
-          </div>
-        </div>
-      </section>
-            <section className="border-t border-white/10 bg-black/95 px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Domande frequenti"
-            description="Tutte le informazioni utili per organizzare al meglio il tuo evento."
-          />
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {faqs.map((item) => (
-              <div
-                key={item.question}
-                className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-stage backdrop-blur-xl"
-              >
-                <h3 className="text-xl font-semibold text-white">
-                  {item.question}
-                </h3>
-
-                <p className="mt-4 text-base leading-8 text-white/70">
-                  {item.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
-        <div className="relative overflow-hidden rounded-[36px] border border-white/10 shadow-[0_0_70px_rgba(0,0,0,0.3)]">
-          <img
-            src="/images/camillo/panorama.jpg"
-            alt="Contatti"
-            className="h-[420px] w-full object-cover object-center sm:h-[520px]"
-          />
-
-          <div className="absolute inset-0 bg-black/65" />
-
-          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-            <div className="max-w-3xl rounded-[32px] border border-white/10 bg-black/35 p-10 backdrop-blur-xl sm:p-12">
-
-              <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">
-                Contattami
+            <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 shadow-xl backdrop-blur-xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
+                Ideale per
               </p>
 
-              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-                Ogni grande spettacolo inizia con un semplice messaggio.
-              </h2>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                {[
+                  "Family Hotel",
+                  "Teatri e Comuni",
+                  "Biblioteche e scuole",
+                  "Pro Loco e festival",
+                  "Feste private",
+                  "Eventi per famiglie",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-black/25 px-5 py-4 text-white/75"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              <Link
-                href="/contatti"
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#d4af37] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-[#e6c95f]"
-              >
-                Contattami
-              </Link>
+            <div className="rounded-[32px] border border-[#d4af37]/25 bg-[#d4af37]/10 p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
+                Dotazione tecnica
+              </p>
 
+              <p className="mt-5 leading-7 text-white/75">
+                Lo spettacolo dispone di impianto audio, luci ed effetti
+                scenici. Nella maggior parte dei casi è sufficiente una presa
+                elettrica nelle vicinanze dello spazio dello spettacolo.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+
+          <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
+              Richiedi informazioni
+            </p>
+
+            <h2 className="mt-5 text-3xl font-semibold text-white sm:text-4xl">
+              Scrivimi i dettagli
+            </h2>
+
+            <p className="mt-4 leading-7 text-white/60">
+              I campi con l’asterisco sono obbligatori.
+            </p>
+
+            <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="nome"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Nome e cognome *
+                  </label>
+
+                  <input
+                    id="nome"
+                    name="nome"
+                    type="text"
+                    value={formData.nome}
+                    onChange={handleChange}
+                    placeholder="Il tuo nome"
+                    autoComplete="name"
+                    required
+                    className="w-full rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Email *
+                  </label>
+
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="nome@email.it"
+                    autoComplete="email"
+                    required
+                    className="w-full rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="telefono"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Telefono
+                  </label>
+
+                  <input
+                    id="telefono"
+                    name="telefono"
+                    type="tel"
+                    value={formData.telefono}
+                    onChange={handleChange}
+                    placeholder="+39"
+                    autoComplete="tel"
+                    className="w-full rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="tipologiaEvento"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Tipo di evento
+                  </label>
+
+                  <select
+                    id="tipologiaEvento"
+                    name="tipologiaEvento"
+                    value={formData.tipologiaEvento}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-white/10 bg-black px-5 py-4 text-white outline-none transition focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  >
+                    <option value="">Seleziona una voce</option>
+                    <option value="Family Hotel">Family Hotel</option>
+                    <option value="Teatro o Comune">
+                      Teatro o Comune
+                    </option>
+                    <option value="Scuola">Scuola</option>
+                    <option value="Biblioteca">Biblioteca</option>
+                    <option value="Pro Loco o festival">
+                      Pro Loco o festival
+                    </option>
+                    <option value="Festa privata">Festa privata</option>
+                    <option value="Altro">Altro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label
+                    htmlFor="luogo"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Luogo dell’evento
+                  </label>
+
+                  <input
+                    id="luogo"
+                    name="luogo"
+                    type="text"
+                    value={formData.luogo}
+                    onChange={handleChange}
+                    placeholder="Comune o località"
+                    className="w-full rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="dataEvento"
+                    className="mb-3 block text-sm font-medium text-white/80"
+                  >
+                    Data indicativa
+                  </label>
+
+                  <input
+                    id="dataEvento"
+                    name="dataEvento"
+                    type="date"
+                    value={formData.dataEvento}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-white/10 bg-black px-5 py-4 text-white outline-none transition focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="messaggio"
+                  className="mb-3 block text-sm font-medium text-white/80"
+                >
+                  Messaggio *
+                </label>
+
+                <textarea
+                  id="messaggio"
+                  name="messaggio"
+                  value={formData.messaggio}
+                  onChange={handleChange}
+                  placeholder="Descrivi brevemente l’evento, il pubblico previsto, gli orari e ogni altra informazione utile."
+                  rows={8}
+                  required
+                  className="w-full resize-y rounded-2xl border border-white/10 bg-black/35 px-5 py-4 text-white outline-none transition placeholder:text-white/30 focus:border-[#d4af37]/70 focus:ring-2 focus:ring-[#d4af37]/15"
+                />
+              </div>
+
+              {successMessage && (
+                <div
+                  role="status"
+                  className="rounded-2xl border border-green-400/25 bg-green-400/10 px-5 py-4 text-green-200"
+                >
+                  {successMessage}
+                </div>
+              )}
+
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="rounded-2xl border border-red-400/25 bg-red-400/10 px-5 py-4 text-red-200"
+                >
+                  {errorMessage}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSending}
+                className="w-full rounded-2xl bg-[#d4af37] px-7 py-4 text-base font-bold text-black transition hover:bg-[#e4c45a] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              >
+                {isSending ? "Invio in corso..." : "Invia la richiesta"}
+              </button>
+
+              <p className="text-sm leading-6 text-white/40">
+                Inviando il modulo autorizzi l’utilizzo dei dati inseriti
+                esclusivamente per rispondere alla tua richiesta.
+              </p>
+            </form>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

@@ -102,7 +102,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-screen-2xl items-center px-8 lg:px-10">
+      <div className="mx-auto flex h-28 max-w-screen-2xl items-center px-8 lg:px-10">
         <Link
           href="/"
           onClick={handleLogoClick}
@@ -114,10 +114,10 @@ export default function Navbar() {
           <Image
             src="/images/logos/logo-magico-camillo-bianco.png"
             alt="Magico Camillo"
-            width={190}
-            height={76}
+            width={220}
+            height={88}
             priority
-            className={`h-auto w-[190px] transition duration-700 ${
+            className={`h-auto w-[220px] transition duration-700 ${
               magicActive
                 ? "drop-shadow-[0_0_25px_rgba(212,175,55,0.95)]"
                 : ""
