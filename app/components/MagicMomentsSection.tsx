@@ -1,22 +1,9 @@
-import fs from "fs";
-import path from "path";
-import MagicMoments from "./MagicMoments";
+"use client";
 
-const galleryDir = path.join(process.cwd(), "public", "images", "gallery");
-
-function getGalleryImages() {
-  if (!fs.existsSync(galleryDir)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(galleryDir, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && /\.(jpe?g|png|webp|avif|gif)$/i.test(entry.name))
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .map((entry) => `/images/gallery/${entry.name}`);
-}
-
-export default function MagicMomentsSection() {
-  const images = getGalleryImages();
-  return <MagicMoments images={images} />;
+export default function SecretMagicButton() {
+  return (
+    <button className="fixed bottom-5 right-5 z-50 rounded-full bg-yellow-400 px-4 py-3 text-black">
+      ⭐
+    </button>
+  );
 }

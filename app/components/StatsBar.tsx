@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const stats = [
   {
     value: "15+",
@@ -5,43 +9,54 @@ const stats = [
   },
   {
     value: "3000+",
-    label: "Spettacoli",
+    label: "Spettacoli realizzati",
   },
   {
-    value: "Family Hotel",
-    label: "Teatri • Comuni • Scuole",
+    value: "100%",
+    label: "Spettacoli dal vivo",
   },
   {
     value: "★★★★★",
-    label: "Emozioni dal vivo",
+    label: "Passione",
   },
 ];
 
 export default function StatsBar() {
   return (
-    <section className="mt-14">
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {stats.map((item) => (
-          <div
+    <section className="mt-16">
+      <div className="flex flex-wrap justify-center gap-6">
+        {stats.map((item, index) => (
+          <motion.div
             key={item.label}
-            className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-7 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#d4af37]/40 hover:bg-white/10 hover:shadow-[0_20px_60px_rgba(212,175,55,0.15)]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.12,
+            }}
+            whileHover={{
+              y: -6,
+              transition: { duration: 0.2 },
+            }}
+            className="group relative w-[220px] overflow-hidden rounded-[30px] border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
           >
-            <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#d4af37]/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-0" />
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#d4af37]/10 blur-3xl" />
+            </div>
 
             <div className="relative">
-
-              <p className="text-3xl font-semibold leading-none text-[#d4af37] sm:text-4xl">
+              <div className="text-5xl font-semibold leading-none text-[#d4af37] whitespace-nowrap">
                 {item.value}
-              </p>
+              </div>
 
-              <div className="mt-5 h-px w-14 bg-[#d4af37]/30" />
+              <div className="mt-6 h-px w-16 bg-[#d4af37]/40" />
 
-              <p className="mt-5 text-xs uppercase tracking-[0.28em] text-white/70">
+              <div className="mt-6 text-sm uppercase tracking-[0.18em] leading-7 text-white/70">
                 {item.label}
-              </p>
-
+              </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

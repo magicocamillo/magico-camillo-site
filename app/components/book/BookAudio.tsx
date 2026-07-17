@@ -11,17 +11,21 @@ export default function BookAudio() {
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    const audio = audioRef.current;
+    const audioElement = audioRef.current;
 
-    if (!audio) {
+    if (!audioElement) {
       return;
     }
 
-    function updateTime() {
+    function updateTime(event: Event) {
+      const audio = event.currentTarget as HTMLAudioElement;
+
       setCurrentTime(audio.currentTime);
     }
 
-    function updateDuration() {
+    function updateDuration(event: Event) {
+      const audio = event.currentTarget as HTMLAudioElement;
+
       if (Number.isFinite(audio.duration)) {
         setDuration(audio.duration);
       }
@@ -32,20 +36,22 @@ export default function BookAudio() {
       setCurrentTime(0);
     }
 
-    updateDuration();
+    if (Number.isFinite(audioElement.duration)) {
+      setDuration(audioElement.duration);
+    }
 
-    audio.addEventListener("timeupdate", updateTime);
-    audio.addEventListener("loadedmetadata", updateDuration);
-    audio.addEventListener("durationchange", updateDuration);
-    audio.addEventListener("canplay", updateDuration);
-    audio.addEventListener("ended", handleEnded);
+    audioElement.addEventListener("timeupdate", updateTime);
+    audioElement.addEventListener("loadedmetadata", updateDuration);
+    audioElement.addEventListener("durationchange", updateDuration);
+    audioElement.addEventListener("canplay", updateDuration);
+    audioElement.addEventListener("ended", handleEnded);
 
     return () => {
-      audio.removeEventListener("timeupdate", updateTime);
-      audio.removeEventListener("loadedmetadata", updateDuration);
-      audio.removeEventListener("durationchange", updateDuration);
-      audio.removeEventListener("canplay", updateDuration);
-      audio.removeEventListener("ended", handleEnded);
+      audioElement.removeEventListener("timeupdate", updateTime);
+      audioElement.removeEventListener("loadedmetadata", updateDuration);
+      audioElement.removeEventListener("durationchange", updateDuration);
+      audioElement.removeEventListener("canplay", updateDuration);
+      audioElement.removeEventListener("ended", handleEnded);
     };
   }, []);
 
@@ -107,6 +113,7 @@ export default function BookAudio() {
     }
 
     const minutes = Math.floor(seconds / 60);
+
     const remainingSeconds = Math.floor(seconds % 60)
       .toString()
       .padStart(2, "0");
@@ -143,10 +150,14 @@ export default function BookAudio() {
             <button
               type="button"
               onClick={togglePlay}
-              aria-label={isPlaying ? "Metti in pausa" : "Riproduci"}
-              className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-[#d4af37] text-4xl text-black shadow-[0_0_45px_rgba(212,175,55,0.4)] transition duration-300 hover:scale-105"
+              aria-label={
+                isPlaying
+                  ? "Metti in pausa"
+                  : "Riproduci"
+              }
+              className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-[#d4af37] text-lg font-bold text-black shadow-[0_0_45px_rgba(212,175,55,0.4)] transition duration-300 hover:scale-105"
             >
-              {isPlaying ? "❚❚" : "▶"}
+              {isPlaying ? "Pausa" : "Play"}
             </button>
 
             <div className="w-full flex-1">
@@ -178,7 +189,9 @@ export default function BookAudio() {
               />
 
               <div className="mt-7 flex items-center gap-4">
-                <span className="text-xl">🔊</span>
+                <span className="text-sm font-semibold uppercase tracking-widest text-white/60">
+                  Volume
+                </span>
 
                 <input
                   type="range"

@@ -1,43 +1,53 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { products } from "../../data/products";
+import { useEffect, useState } from "react";
 import { addToCart } from "../../data/carts";
+import { products } from "../../data/products";
 
 export default function ProductPage() {
   const params = useParams();
-  const id = params.id as string;
+  const id = typeof params.id === "string" ? params.id : "";
+
+  const product = products.find((item) => item.id === id);
+
+  const [selectedImage, setSelectedImage] = useState("");
+
+  useEffect(() => {
+    if (product) {
+      setSelectedImage(product.images?.[0] || product.image);
+    }
+  }, [product]);
 
   if (id === "cart") {
     return null;
   }
 
-  const product = products.find((item) => item.id === id);
-
   if (!product) {
     return (
       <main className="min-h-screen bg-black px-8 py-40 text-white">
-        <h1 className="text-4xl">
-          Prodotto non trovato
-        </h1>
+        <div className="mx-auto max-w-5xl">
+          <h1 className="text-4xl font-semibold">
+            Prodotto non trovato
+          </h1>
 
-        <Link
-          href="/boutique"
-          className="mt-8 inline-block rounded-full bg-[#d4af37] px-8 py-4 text-black"
-        >
-          Torna alla Boutique
-        </Link>
+          <Link
+            href="/boutique"
+            className="mt-8 inline-block rounded-full bg-[#d4af37] px-8 py-4 font-bold text-black transition hover:bg-[#e5c24d]"
+          >
+            Torna alla Boutique
+          </Link>
+        </div>
       </main>
     );
   }
 
-  const [selectedImage, setSelectedImage] = useState(
-    product.images?.[0] || product.image
-  );
-
   function handleAdd() {
+    if (!product) {
+      return;
+    }
+
     addToCart({
       id: product.id,
       name: product.name,
@@ -46,48 +56,44 @@ export default function ProductPage() {
       image: product.image,
     });
 
-    alert(`${product.name} aggiunto al carrello`);
+    window.alert(`${product.name} aggiunto al carrello`);
+
+    window.dispatchEvent(new Event("cartUpdated"));
+  }
+
+  function formatPrice(value: number) {
+    return new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "EUR",
+    }).format(value);
   }
 
   return (
-    <main className="min-h-screen bg-black px-8 pt-40 pb-32 text-white lg:px-20">
-
+    <main className="min-h-screen bg-black px-8 pb-32 pt-40 text-white lg:px-20">
       <div className="mx-auto grid max-w-screen-2xl gap-16 lg:grid-cols-2">
-
-        {/* GALLERIA */}
         <div>
-
           <div className="overflow-hidden rounded-[40px] border border-white/10 bg-white/5">
             <img
-              src={selectedImage}
+              src={selectedImage || product.image}
               alt={product.name}
-              className="
-                h-[650px]
-                w-full
-                object-cover
-                transition-all
-                duration-500
-                hover:scale-110
-              "
+              className="h-[650px] w-full object-cover transition-all duration-500 hover:scale-110"
             />
           </div>
 
           {(product.images?.length ?? 0) > 0 && (
-
-            <div className="mt-6 grid grid-cols-5 gap-4">
-
+            <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-5">
               {product.images.map((image) => (
-
                 <button
                   key={image}
+                  type="button"
                   onClick={() => setSelectedImage(image)}
+                  aria-label={`Mostra immagine di ${product.name}`}
                   className={`
                     overflow-hidden
                     rounded-2xl
                     border-2
                     transition-all
                     duration-300
-
                     ${
                       selectedImage === image
                         ? "border-[#d4af37]"
@@ -95,42 +101,28 @@ export default function ProductPage() {
                     }
                   `}
                 >
-
                   <img
                     src={image}
                     alt={product.name}
-                    className="
-                      h-28
-                      w-full
-                      object-cover
-                      transition
-                      hover:scale-110
-                    "
+                    className="h-28 w-full object-cover transition hover:scale-110"
                   />
-
                 </button>
-
               ))}
-
             </div>
-
           )}
-
         </div>
-                {/* DETTAGLI */}
 
         <div className="flex flex-col justify-center">
-
           <p className="uppercase tracking-[0.45em] text-[#d4af37]">
             {product.category}
           </p>
 
-          <h1 className="mt-6 text-6xl font-semibold leading-tight">
+          <h1 className="mt-6 text-5xl font-semibold leading-tight sm:text-6xl">
             {product.name}
           </h1>
 
           <p className="mt-8 text-5xl font-bold text-[#d4af37]">
-            € {product.price}
+            {formatPrice(product.price)}
           </p>
 
           <p className="mt-8 text-xl leading-9 text-white/70">
@@ -138,37 +130,30 @@ export default function ProductPage() {
           </p>
 
           <div className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-8">
-
             <h2 className="text-2xl font-semibold">
               Caratteristiche
             </h2>
 
             <ul className="mt-6 space-y-4">
-
               {product.features.map((feature) => (
-
                 <li
                   key={feature}
-                  className="flex items-center gap-3 text-lg text-white/70"
+                  className="flex items-start gap-4 text-lg text-white/70"
                 >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[#d4af37]"
+                  />
 
-                  <span className="text-[#d4af37] text-xl">
-                    ✓
-                  </span>
-
-                  {feature}
-
+                  <span>{feature}</span>
                 </li>
-
               ))}
-
             </ul>
-
           </div>
 
           <div className="mt-10 flex flex-wrap gap-5">
-
             <button
+              type="button"
               onClick={handleAdd}
               className="
                 rounded-full
@@ -203,34 +188,26 @@ export default function ProductPage() {
             >
               Vai al carrello
             </Link>
-
           </div>
-
         </div>
-
       </div>
-            {/* SEZIONE INFORMATIVA */}
 
       <section className="mx-auto mt-28 max-w-screen-2xl">
-
-        <div className="rounded-[40px] border border-white/10 bg-white/5 p-12">
-
+        <div className="rounded-[40px] border border-white/10 bg-white/5 p-8 sm:p-12">
           <h2 className="text-4xl font-semibold">
             Perché scegliere questo prodotto?
           </h2>
 
           <p className="mt-8 max-w-4xl text-xl leading-9 text-white/70">
             Ogni prodotto presente nella Boutique di Magico Camillo nasce
-            dall'esperienza di centinaia di spettacoli dal vivo.
-            Non si tratta di semplici articoli commerciali, ma di strumenti
-            progettati e selezionati per offrire affidabilità,
-            praticità e un impatto scenico professionale.
+            dall&apos;esperienza di centinaia di spettacoli dal vivo. Non si
+            tratta di semplici articoli commerciali, ma di strumenti progettati
+            e selezionati per offrire affidabilità, praticità e un impatto
+            scenico professionale.
           </p>
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-
             <div className="rounded-3xl border border-white/10 bg-black/30 p-8">
-
               <h3 className="text-2xl font-semibold text-[#d4af37]">
                 Qualità
               </h3>
@@ -239,24 +216,20 @@ export default function ProductPage() {
                 Materiali accuratamente selezionati e testati durante gli
                 spettacoli.
               </p>
-
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-black/30 p-8">
-
               <h3 className="text-2xl font-semibold text-[#d4af37]">
                 Assistenza
               </h3>
 
               <p className="mt-4 leading-8 text-white/70">
                 Supporto diretto per qualsiasi dubbio prima e dopo
-                l'acquisto.
+                l&apos;acquisto.
               </p>
-
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-black/30 p-8">
-
               <h3 className="text-2xl font-semibold text-[#d4af37]">
                 Esperienza
               </h3>
@@ -265,17 +238,10 @@ export default function ProductPage() {
                 Prodotti sviluppati da chi utilizza realmente queste
                 attrezzature davanti al pubblico.
               </p>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
-
   );
-
 }

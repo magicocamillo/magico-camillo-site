@@ -1,21 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { products } from "../../data/products";
 import { addToCart } from "../../data/carts";
+import { Product, products } from "../../data/products";
+
+const bacchettaMagica = products.find(
+  (item) => item.id === "bacchetta-magica"
+);
 
 export default function BacchettaMagicaPage() {
-  const product = products.find(
-    (item) => item.id === "bacchetta-magica"
-  );
+  if (!bacchettaMagica) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold">
+            Prodotto non trovato
+          </h1>
 
-  const [selectedImage, setSelectedImage] = useState(
-    product?.images[0] ?? ""
-  );
-
-  if (!product) {
-    return null;
+          <p className="mt-5 text-white/60">
+            La Bacchetta Magica non è presente nell’elenco dei prodotti.
+          </p>
+        </div>
+      </main>
+    );
   }
+
+  return <BacchettaMagicaContent product={bacchettaMagica} />;
+}
+
+function BacchettaMagicaContent({
+  product,
+}: {
+  product: Product;
+}) {
+  const [selectedImage, setSelectedImage] = useState(
+    product.images?.[0] || product.image
+  );
 
   function handleAddToCart() {
     addToCart({
@@ -26,7 +46,16 @@ export default function BacchettaMagicaPage() {
       image: product.image,
     });
 
-    alert("Bacchetta Magica aggiunta al carrello");
+    window.dispatchEvent(new Event("cartUpdated"));
+
+    window.alert("Bacchetta Magica aggiunta al carrello");
+  }
+
+  function formatPrice(value: number) {
+    return new Intl.NumberFormat("it-IT", {
+      style: "currency",
+      currency: "EUR",
+    }).format(value);
   }
 
   return (
@@ -42,26 +71,29 @@ export default function BacchettaMagicaPage() {
               />
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-4">
-              {product.images.map((image) => (
-                <button
-                  key={image}
-                  type="button"
-                  onClick={() => setSelectedImage(image)}
-                  className={`overflow-hidden rounded-2xl border transition duration-300 ${
-                    selectedImage === image
-                      ? "scale-105 border-[#d4af37]"
-                      : "border-white/10 hover:border-[#d4af37]/50"
-                  }`}
-                >
-                  <img
-                    src={image}
-                    alt="Anteprima Bacchetta Magica"
-                    className="aspect-square w-full bg-black object-contain p-2"
-                  />
-                </button>
-              ))}
-            </div>
+            {product.images.length > 0 && (
+              <div className="mt-7 grid grid-cols-2 gap-4">
+                {product.images.map((image) => (
+                  <button
+                    key={image}
+                    type="button"
+                    onClick={() => setSelectedImage(image)}
+                    aria-label={`Mostra immagine di ${product.name}`}
+                    className={`overflow-hidden rounded-2xl border transition duration-300 ${
+                      selectedImage === image
+                        ? "scale-105 border-[#d4af37]"
+                        : "border-white/10 hover:border-[#d4af37]/50"
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`Anteprima di ${product.name}`}
+                      className="aspect-square w-full bg-black object-contain p-2"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div>
@@ -78,7 +110,7 @@ export default function BacchettaMagicaPage() {
             </p>
 
             <p className="mt-10 text-7xl font-black text-[#d4af37]">
-              € {product.price}
+              {formatPrice(product.price)}
             </p>
 
             <p className="mt-10 text-xl leading-9 text-white/70">
@@ -92,16 +124,21 @@ export default function BacchettaMagicaPage() {
               onClick={handleAddToCart}
               className="mt-12 w-full rounded-full bg-[#d4af37] px-10 py-6 text-2xl font-bold text-black transition duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(212,175,55,0.45)]"
             >
-              🛒 Acquista ora
+              Acquista ora
             </button>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {product.features.map((feature) => (
                 <div
                   key={feature}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center font-semibold text-white/80"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-center font-semibold text-white/80"
                 >
-                  ✓ {feature}
+                  <span
+                    aria-hidden="true"
+                    className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#d4af37]"
+                  />
+
+                  <span>{feature}</span>
                 </div>
               ))}
             </div>

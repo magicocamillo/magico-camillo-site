@@ -6,16 +6,16 @@ export default function HeroStory() {
       {/* HERO */}
 
       <section className="overflow-hidden rounded-[42px] border border-white/10 bg-gradient-to-br from-[#171717] via-[#101010] to-black shadow-stage">
-        <div className="grid items-center gap-14 p-8 sm:p-10 lg:grid-cols-2 lg:p-16">
-          <div className="overflow-hidden rounded-[38px] border border-white/10 bg-black">
+        <div className="grid gap-14 p-8 sm:p-10 lg:grid-cols-2 lg:items-stretch lg:p-16">
+          <div className="overflow-hidden rounded-[38px] border border-white/10 bg-black lg:h-full">
             <img
               src="/images/about/hero.jpg"
               alt="Magico Camillo"
-              className="h-[520px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[650px] lg:h-[700px]"
+              className="h-[420px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[560px] lg:h-full lg:min-h-[700px]"
             />
           </div>
 
-          <div>
+          <div className="flex flex-col justify-center">
             <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">
               Chi sono
             </p>
