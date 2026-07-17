@@ -117,7 +117,7 @@ export default function Navbar() {
             width={220}
             height={88}
             priority
-            className={`h-auto w-[220px] transition duration-700 ${
+            className={`h-auto w-[px] transition duration-700 ${
               magicActive
                 ? "drop-shadow-[0_0_25px_rgba(212,175,55,0.95)]"
                 : ""
