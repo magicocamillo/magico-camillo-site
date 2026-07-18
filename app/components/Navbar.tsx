@@ -28,7 +28,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
     };
 
     const updateCart = () => {
@@ -45,28 +45,24 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("cartUpdated", updateCart);
 
-      if (clickResetTimer.current !== null) {
-        window.clearTimeout(clickResetTimer.current);
+      if (clickResetTimer.current) {
+        clearTimeout(clickResetTimer.current);
       }
     };
   }, []);
 
   useEffect(() => {
-    if (logoClicks < 5) {
-      return;
-    }
+    if (logoClicks < 5) return;
 
     setMagicActive(true);
 
-    const accessTimer = window.setTimeout(() => {
+    const timer = window.setTimeout(() => {
       router.push("/accesso-area-segreta");
       setLogoClicks(0);
       setMagicActive(false);
     }, 900);
 
-    return () => {
-      window.clearTimeout(accessTimer);
-    };
+    return () => clearTimeout(timer);
   }, [logoClicks, router]);
 
   function handleLogoClick(
@@ -74,19 +70,17 @@ export default function Navbar() {
   ) {
     event.preventDefault();
 
-    if (clickResetTimer.current !== null) {
-      window.clearTimeout(clickResetTimer.current);
+    if (clickResetTimer.current) {
+      clearTimeout(clickResetTimer.current);
     }
 
-    const nextClickCount = logoClicks + 1;
-    setLogoClicks(nextClickCount);
+    const next = logoClicks + 1;
+    setLogoClicks(next);
 
-    if (nextClickCount >= 5) {
-      return;
-    }
+    if (next >= 5) return;
 
     clickResetTimer.current = window.setTimeout(() => {
-      if (nextClickCount === 1) {
+      if (next === 1) {
         router.push("/");
       }
 
@@ -96,28 +90,28 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-[#d4af37]/15 bg-black/85 backdrop-blur-2xl"
-          : "bg-transparent"
+          ? "border-b border-white/10 bg-black/85 backdrop-blur-2xl"
+          : "bg-gradient-to-b from-black/70 via-black/25 to-transparent"
       }`}
     >
-      <div className="mx-auto flex h-28 max-w-screen-2xl items-center px-8 lg:px-10">
+      <div className="mx-auto flex h-24 max-w-screen-2xl items-center px-6 lg:px-10">
+
         <Link
           href="/"
           onClick={handleLogoClick}
-          aria-label="Torna alla pagina iniziale"
-          className={`mr-8 shrink-0 transition duration-500 hover:scale-105 ${
+          className={`mr-10 shrink-0 transition duration-500 hover:scale-105 ${
             magicActive ? "scale-110" : ""
           }`}
         >
           <Image
             src="/images/logos/logo-magico-camillo-bianco.png"
             alt="Magico Camillo"
-            width={220}
-            height={88}
+            width={240}
+            height={96}
             priority
-            className={`h-auto w-[px] transition duration-700 ${
+            className={`h-auto w-[240px] transition duration-700 ${
               magicActive
                 ? "drop-shadow-[0_0_25px_rgba(212,175,55,0.95)]"
                 : ""
@@ -125,8 +119,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center gap-7 lg:flex xl:gap-10">
-          {navItems.map((item) => (
+<nav className="hidden flex-1 items-center justify-center gap-8 xl:gap-10 lg:flex">                  {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -146,7 +139,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="ml-6 flex items-center gap-4">
+        <div className="ml-8 flex items-center gap-5">
+
           <Link
             href="/cart"
             aria-label="Apri il carrello"
@@ -157,6 +151,7 @@ export default function Navbar() {
               gap-2
               text-white
               transition
+              duration-300
               hover:text-[#d4af37]
             "
           >
@@ -214,15 +209,18 @@ export default function Navbar() {
                 {cartCount}
               </span>
             )}
-          </Link>
 
-          <Link
+          </Link>
+                    <Link
             href="/contatti"
             className="
               hidden
+              lg:inline-flex
+              items-center
+              justify-center
               rounded-full
               bg-[#d4af37]
-              px-6
+              px-7
               py-3
               text-[12px]
               font-bold
@@ -233,12 +231,13 @@ export default function Navbar() {
               duration-300
               hover:scale-105
               hover:bg-[#e5c24d]
-              lg:inline-flex
             "
           >
             Richiedi preventivo
           </Link>
+
         </div>
+
       </div>
 
       {magicActive && (
@@ -251,16 +250,34 @@ export default function Navbar() {
             items-center
             justify-center
             bg-black/50
-            backdrop-blur-[2px]
+            backdrop-blur-sm
           "
         >
-          <div className="rounded-full border border-[#d4af37] bg-black/90 px-8 py-4 shadow-[0_0_50px_rgba(212,175,55,0.5)]">
-            <p className="text-lg font-semibold uppercase tracking-[0.25em] text-[#d4af37]">
+          <div
+            className="
+              rounded-full
+              border
+              border-[#d4af37]
+              bg-black/90
+              px-8
+              py-4
+              shadow-[0_0_50px_rgba(212,175,55,0.45)]
+            "
+          >
+            <p
+              className="
+                text-lg
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-[#d4af37]
+              "
+            >
               Passaggio segreto
             </p>
           </div>
         </div>
       )}
-    </header>
+          </header>
   );
 }

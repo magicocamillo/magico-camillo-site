@@ -54,7 +54,7 @@ export default function Spettacoli() {
             <img
               src="/images/camillo/hero.jpg"
               alt="Magico Camillo in scena"
-              className="h-[420px] w-full object-cover object-center sm:h-[520px]"
+              className="h-[420px] w-full object-contain object-center bg-black sm:h-[520px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
           </div>
