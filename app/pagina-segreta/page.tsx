@@ -73,7 +73,7 @@ export default function PaginaSegreta() {
               className="h-full w-full object-cover"
             >
               <source
-                src="/video/contenuto-segreto.mp4"
+                src="/video/segreti/segreto-1.mp4"
                 type="video/mp4"
               />
 

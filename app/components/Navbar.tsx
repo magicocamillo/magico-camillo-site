@@ -24,7 +24,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [logoClicks, setLogoClicks] = useState(0);
-  const [magicActive, setMagicActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,21 +53,19 @@ export default function Navbar() {
   useEffect(() => {
     if (logoClicks < 5) return;
 
-    setMagicActive(true);
-
-    const timer = window.setTimeout(() => {
-      router.push("/accesso-area-segreta");
-      setLogoClicks(0);
-      setMagicActive(false);
-    }, 900);
-
-    return () => clearTimeout(timer);
+    setLogoClicks(0);
+    router.push("/accesso-area-segreta");
   }, [logoClicks, router]);
 
   function handleLogoClick(
     event: React.MouseEvent<HTMLAnchorElement>
   ) {
     event.preventDefault();
+
+    if (!event.altKey) {
+      router.push("/");
+      return;
+    }
 
     if (clickResetTimer.current) {
       clearTimeout(clickResetTimer.current);
@@ -85,7 +82,7 @@ export default function Navbar() {
       }
 
       setLogoClicks(0);
-    }, 700);
+    }, 1500);
   }
 
   return (
@@ -96,30 +93,32 @@ export default function Navbar() {
           : "bg-gradient-to-b from-black/70 via-black/25 to-transparent"
       }`}
     >
-      <div className="mx-auto flex h-24 max-w-screen-2xl items-center px-6 lg:px-10">
+<div className="mx-auto flex h-24 max-w-screen-2xl items-center px-6 lg:px-10">
 
-        <Link
-          href="/"
+    <Link
+              href="/"
           onClick={handleLogoClick}
-          className={`mr-10 shrink-0 transition duration-500 hover:scale-105 ${
-            magicActive ? "scale-110" : ""
-          }`}
+          className="mr-10 shrink-0 transition duration-500 hover:scale-105"
         >
           <Image
-            src="/images/logos/logo-magico-camillo-bianco.png"
-            alt="Magico Camillo"
-            width={240}
-            height={96}
-            priority
-            className={`h-auto w-[240px] transition duration-700 ${
-              magicActive
-                ? "drop-shadow-[0_0_25px_rgba(212,175,55,0.95)]"
-                : ""
-            }`}
-          />
+
+  src="/images/logos/logo-magico-camillo-bianco.png"
+
+  alt="Magico Camillo"
+
+  width={320}
+
+  height={134}
+
+  priority
+
+  className="h-auto w-auto max-h-[82px] transition duration-700"
+
+/>
         </Link>
 
-<nav className="hidden flex-1 items-center justify-center gap-8 xl:gap-10 lg:flex">                  {navItems.map((item) => (
+        <nav className="hidden flex-1 items-center justify-center gap-8 xl:gap-10 lg:flex">
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -140,7 +139,6 @@ export default function Navbar() {
         </nav>
 
         <div className="ml-8 flex items-center gap-5">
-
           <Link
             href="/cart"
             aria-label="Apri il carrello"
@@ -209,7 +207,6 @@ export default function Navbar() {
                 {cartCount}
               </span>
             )}
-
           </Link>
                     <Link
             href="/contatti"
@@ -234,50 +231,9 @@ export default function Navbar() {
             "
           >
             Richiedi preventivo
-          </Link>
-
+            </Link>
         </div>
-
       </div>
-
-      {magicActive && (
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            flex
-            items-center
-            justify-center
-            bg-black/50
-            backdrop-blur-sm
-          "
-        >
-          <div
-            className="
-              rounded-full
-              border
-              border-[#d4af37]
-              bg-black/90
-              px-8
-              py-4
-              shadow-[0_0_50px_rgba(212,175,55,0.45)]
-            "
-          >
-            <p
-              className="
-                text-lg
-                font-semibold
-                uppercase
-                tracking-[0.25em]
-                text-[#d4af37]
-              "
-            >
-              Passaggio segreto
-            </p>
-          </div>
-        </div>
-      )}
-          </header>
+    </header>
   );
 }
