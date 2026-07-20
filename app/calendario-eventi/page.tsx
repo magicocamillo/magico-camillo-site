@@ -1,32 +1,49 @@
-const events = [
-  { date: "10 Luglio 2026", location: "Family Hotel di Garda", title: "Detective Magico Camillo" },
-  { date: "22 Luglio 2026", location: "Festa in Piazza, Torino", title: "Magia per famiglie" },
-  { date: "05 Agosto 2026", location: "Teatro Comunale, Roma", title: "Bolle di sapone e poesia" },
-];
+import Link from "next/link";
 
-export default function CalendarioEventi() {
+export default function Calendario() {
   return (
     <main className="px-6 py-20 sm:px-10 lg:px-14">
-      <div className="mx-auto max-w-6xl space-y-10">
-        <section className="rounded-[32px] border border-white/10 bg-white/5 p-10 shadow-stage backdrop-blur-xl">
-          <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/85">Calendario Eventi</p>
-          <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
-            Prossimi appuntamenti in giro per l’Italia.
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/70">
-            Segui le date in programma e scegli la tappa giusta per un pomeriggio di risate, misteri e magia per tutta la famiglia.
+      <div className="mx-auto max-w-4xl">
+
+        <section className="rounded-[40px] border border-white/10 bg-white/5 p-12 text-center shadow-stage backdrop-blur-xl">
+
+          <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">
+            Calendario spettacoli
           </p>
+
+          <h1 className="mt-6 text-5xl font-semibold text-white sm:text-6xl">
+            Seguimi su Instagram
+          </h1>
+
+          <p className="mx-auto mt-8 max-w-2xl text-xl leading-9 text-white/70">
+            Vuoi sapere dove sarà il prossimo spettacolo del Magico Camillo?
+            Sul mio profilo Instagram pubblico regolarmente le date degli
+            spettacoli, gli eventi, i dietro le quinte e tante curiosità.
+          </p>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/60">
+            Seguimi per rimanere sempre aggiornato sui prossimi appuntamenti.
+          </p>
+
+          <Link
+            href="https://www.instagram.com/magicocamillo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-14 inline-flex flex-col items-center"
+          >
+            <img
+              src="/images/social/instagram.png"
+              alt="Instagram Magico Camillo"
+              className="h-44 w-44 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+            />
+
+            <span className="mt-6 text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-[#d4af37]">
+              @magicocamillo
+            </span>
+          </Link>
+
         </section>
 
-        <div className="space-y-6">
-          {events.map((event) => (
-            <article key={event.date} className="rounded-[28px] border border-white/10 bg-black/60 p-8 shadow-stage transition hover:border-[#d4af37]/40">
-              <p className="text-sm uppercase tracking-[0.25em] text-[#d4af37]/80">{event.date}</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">{event.title}</h2>
-              <p className="mt-2 text-white/70">{event.location}</p>
-            </article>
-          ))}
-        </div>
       </div>
     </main>
   );

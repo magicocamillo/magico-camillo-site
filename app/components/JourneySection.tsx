@@ -4,19 +4,21 @@ import { useRef, useState } from "react";
 
 export default function JourneySection() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [started, setStarted] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
-  const playVideo = async () => {
-    if (!videoRef.current) return;
-
-    videoRef.current.muted = false;
-    videoRef.current.currentTime = 0;
+  const startVideo = async () => {
+    const video = videoRef.current;
+    if (!video) return;
 
     try {
-      await videoRef.current.play();
-      setStarted(true);
-    } catch (err) {
-      console.log(err);
+      video.currentTime = 0;
+
+      // iPhone richiede che il video sia pronto
+      await video.play();
+
+      setPlaying(true);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -49,34 +51,25 @@ export default function JourneySection() {
 
           <video
             ref={videoRef}
-            className="w-full"
+            className="block w-full"
             src="/video/viaggio-andalo.mp4"
             playsInline
-            controls={started}
-            onEnded={() => setStarted(false)}
+            controls={playing}
+            preload="auto"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onEnded={() => setPlaying(false)}
           />
 
-          {!started && (
+          {!playing && (
             <button
-              onClick={playVideo}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-black/45 transition hover:bg-black/35"
+              type="button"
+              onClick={startVideo}
+              className="absolute inset-0 z-10 flex items-center justify-center bg-black/35"
             >
-              <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#d4af37] bg-black/50 text-5xl text-[#d4af37] transition hover:scale-110">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/90 text-5xl text-black transition hover:scale-110">
                 ▶
               </div>
-
-              <p className="mt-8 uppercase tracking-[0.4em] text-[#d4af37]">
-                IL VIAGGIO VERSO LA MAGIA
-              </p>
-
-              <h3 className="mt-4 text-3xl font-semibold text-white">
-                Guarda il viaggio
-              </h3>
-
-              <p className="mt-4 max-w-xl px-8 text-center text-white/80">
-                Scopri cosa succede prima che si alzi il sipario.
-              </p>
-
             </button>
           )}
 

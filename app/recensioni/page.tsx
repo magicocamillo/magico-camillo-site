@@ -129,7 +129,7 @@ export default function RecensioniPage() {
               26
             </p>
             <p className="mt-2 text-white/60">
-              Recensioni pubblicate
+              Recensioni su Google
             </p>
           </div>
 
@@ -263,7 +263,46 @@ export default function RecensioniPage() {
         </div>
 
       </section>
+<section className="px-6 py-24 sm:px-10 lg:px-14">
 
+  <div className="mx-auto max-w-5xl rounded-[40px] border border-[#d4af37]/25 bg-gradient-to-br from-[#111] to-[#1b1b1b] p-10 text-center">
+
+    <p className="text-4xl tracking-[0.2em] text-[#d4af37]">
+      ★★★★★
+    </p>
+
+    <p className="mt-6 text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
+      La tua opinione conta
+    </p>
+
+    <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl">
+      Ti è piaciuto lo spettacolo?
+    </h2>
+
+    <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/70">
+      Ogni recensione aiuta altre famiglie, hotel, scuole e organizzatori
+      a conoscere il mio lavoro.
+      <br />
+      <br />
+      Se hai assistito a uno spettacolo del <strong className="text-white">Magico Camillo</strong>,
+      mi farebbe davvero piacere leggere la tua opinione.
+    </p>
+
+    <a
+  href="https://g.page/r/CYYOpc2bnpwMEBM/review"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[#d4af37] px-10 py-4 font-semibold text-black transition-all duration-300 hover:scale-[1.03] hover:bg-[#e4c457] shadow-lg"
+>
+  Lascia una recensione su Google
+</a>
+    <p className="mt-8 text-sm text-white/50">
+      Grazie per il tempo che vorrai dedicarmi.
+    </p>
+
+  </div>
+
+</section>
       <section className="border-t border-white/10 px-6 py-24 sm:px-10 lg:px-14 lg:py-32">
 
         <div className="mx-auto max-w-5xl rounded-[40px] border border-[#d4af37]/25 bg-gradient-to-br from-[#d4af37]/15 via-white/[0.04] to-transparent p-8 text-center sm:p-14 lg:p-20">

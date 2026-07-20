@@ -13,10 +13,16 @@ export default function ProductPage() {
   const product = products.find((item) => item.id === id);
 
   const [selectedImage, setSelectedImage] = useState("");
+  const [showVideo, setShowVideo] = useState(false);
+
+  const hasDemoVideo = product?.id === "bacchetta-magica";
+
+const demoVideo = "/video/products/bacchetta-anteprima.mp4";
 
   useEffect(() => {
     if (product) {
       setSelectedImage(product.images?.[0] || product.image);
+      setShowVideo(false);
     }
   }, [product]);
 
@@ -69,16 +75,56 @@ export default function ProductPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black px-8 pb-32 pt-40 text-white lg:px-20">
+        <main className="min-h-screen bg-black px-8 pb-32 pt-40 text-white lg:px-20">
       <div className="mx-auto grid max-w-screen-2xl gap-16 lg:grid-cols-2">
         <div>
           <div className="overflow-hidden rounded-[40px] border border-white/10 bg-white/5">
-            <img
-              src={selectedImage || product.image}
-              alt={product.name}
-              className="h-[650px] w-full object-cover transition-all duration-500 hover:scale-110"
-            />
+
+  {showVideo ? (
+  <video
+    key={demoVideo}
+    controls
+    autoPlay
+    playsInline
+    preload="auto"
+    className="h-[650px] w-full rounded-[40px] object-cover"
+  >
+    <source src={demoVideo} type="video/mp4" />
+    Il tuo browser non supporta il video.
+  </video>
+) : (
+              <img
+                src={selectedImage || product.image}
+                alt={product.name}
+className="h-[650px] w-full object-contain bg-black transition-all duration-500"
+              />
+            )}
+
           </div>
+
+          {hasDemoVideo && (
+            <button
+              type="button"
+              onClick={() => setShowVideo(true)}
+              className="
+                mt-6
+                w-full
+                rounded-2xl
+                bg-[#d4af37]
+                px-6
+                py-4
+                text-lg
+                font-bold
+                text-black
+                transition-all
+                duration-300
+                hover:scale-[1.02]
+                hover:bg-[#e6bf3d]
+              "
+            >
+              Guarda il video dimostrativo
+            </button>
+          )}
 
           {(product.images?.length ?? 0) > 0 && (
             <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-5">
@@ -86,7 +132,10 @@ export default function ProductPage() {
                 <button
                   key={image}
                   type="button"
-                  onClick={() => setSelectedImage(image)}
+                  onClick={() => {
+                    setSelectedImage(image);
+                    setShowVideo(false);
+                  }}
                   aria-label={`Mostra immagine di ${product.name}`}
                   className={`
                     overflow-hidden
@@ -95,7 +144,7 @@ export default function ProductPage() {
                     transition-all
                     duration-300
                     ${
-                      selectedImage === image
+                      !showVideo && selectedImage === image
                         ? "border-[#d4af37]"
                         : "border-white/10 hover:border-white/30"
                     }
@@ -150,8 +199,7 @@ export default function ProductPage() {
               ))}
             </ul>
           </div>
-
-          <div className="mt-10 flex flex-wrap gap-5">
+                    <div className="mt-10 flex flex-wrap gap-5">
             <button
               type="button"
               onClick={handleAdd}
@@ -242,6 +290,6 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
-    </main>
+          </main>
   );
 }
