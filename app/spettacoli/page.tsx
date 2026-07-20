@@ -37,29 +37,40 @@ const reasons = [
 export default function Spettacoli() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <section className="relative overflow-hidden border-b border-white/10 px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(212,175,55,0.12),_transparent_35%)]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="max-w-3xl space-y-8">
-            <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]/80">Spettacoli</p>
-            <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Ogni spettacolo è un'esperienza da ricordare.
-            </h1>
-            <p className="max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-              Magia, comicità, tecnologia e poesia per bambini, famiglie, teatri e Family Hotel.
-            </p>
-          </div>
+      <section className="relative h-[60vh] min-h-[520px] overflow-hidden">
 
-          <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-[0_0_70px_rgba(0,0,0,0.35)]">
-            <img
-              src="/images/camillo/hero.jpg"
-              alt="Magico Camillo in scena"
-              className="h-[420px] w-full object-contain object-center bg-black sm:h-[520px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-          </div>
-        </div>
-      </section>
+  <img
+    src="/images/camillo/spettacoli-hero.jpg"
+    alt="Magico Camillo durante uno spettacolo"
+    className="absolute inset-0 h-full w-full object-cover object-[center_8%]"
+  />
+
+  <div className="absolute inset-0 bg-black/55" />
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/20" />
+
+  <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 sm:px-10 lg:px-14">
+
+    <div className="max-w-3xl">
+
+      <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">
+        Spettacoli
+      </p>
+
+      <h1 className="mt-6 text-5xl font-semibold leading-tight text-white sm:text-6xl lg:text-7xl">
+        Ogni spettacolo è un'esperienza da ricordare.
+      </h1>
+
+      <p className="mt-8 max-w-2xl text-xl leading-9 text-white/80">
+        Magia, comicità, teatro, tecnologia e poesia per bambini,
+        famiglie, teatri, comuni, festival e Family Hotel.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
       <section className="px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
         <div className="mx-auto flex max-w-7xl flex-col gap-8">
