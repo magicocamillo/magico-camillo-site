@@ -6,8 +6,24 @@ const collaborations = [
     location: "Andalo (TN)",
     image: "/images/collaborazioni/piz-galin.jpg",
     description:
-      "Da diversi anni porto il mio spettacolo per bambini e famiglie al Grand Hotel Piz Galin, contribuendo ad animare le serate dedicate agli ospiti dell'hotel.",
+      "Da diversi anni porto il mio spettacolo di magia comica e bolle di sapone alle famiglie ospiti del Grand Hotel Piz Galin, contribuendo a rendere ancora più speciale la loro vacanza.",
     website: "https://www.pizgalin.it",
+  },
+  {
+    name: "Astoria Comfort Hotel",
+    location: "Andalo (TN)",
+    image: "/images/collaborazioni/astoria.jpg",
+    description:
+      "Collaboro con l'Astoria Comfort Hotel portando spettacoli di magia, comicità e bolle di sapone dedicati alle famiglie e ai bambini durante il soggiorno in montagna.",
+    website: "https://www.astoria-andalo.com",
+  },
+  {
+    name: "Hotel AlpHoliday Dolomiti",
+    location: "Dimaro Folgarida (TN)",
+    image: "/images/collaborazioni/alpholiday.jpg",
+    description:
+      "Dal 2026 collaboro con l'Hotel AlpHoliday Dolomiti, portando spettacoli di magia comica, comicità e bolle di sapone per regalare momenti di divertimento e meraviglia alle famiglie in vacanza.",
+    website: "https://www.alpholiday.it",
   },
 ];
 
