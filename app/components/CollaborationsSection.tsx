@@ -9,6 +9,14 @@ const collaborations = [
       "Da diversi anni porto il mio spettacolo di magia comica e bolle di sapone alle famiglie ospiti del Grand Hotel Piz Galin, contribuendo a rendere ancora più speciale la loro vacanza.",
     website: "https://www.pizgalin.it",
   },
+   {
+    name: "Alpino Baby Family Hotel",
+    location: "Andalo (TN)",
+    image: "/images/collaborazioni/alpino-baby-family.jpg",
+    description:
+      "Un vero paradiso per bambini... e anche per i più piccolini. All'Alpino Baby Family Hotel porto il mio spettacolo di magia e comicità, regalando momenti di meraviglia e divertimento a tutta la famiglia.",
+    website: "https://www.hotelalpinoandalo.com",
+  },
   {
     name: "Astoria Comfort Hotel",
     location: "Andalo (TN)",
