@@ -1,31 +1,42 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import StatsBar from "./StatsBar";
-
+import LogoMagicOverlay from "./LogoMagicOverlay";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-black">
-
       {/* SFONDO */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.10),transparent_28%)]" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/40" />
 
-      {/* HERO */}
-      <div className="relative z-20 mx-auto max-w-7xl px-8 pt-28 lg:px-12">
+ {/* TITOLO MAGICO CAMILLO */}
+<div className="relative z-20 -mt-12 -mb-12 flex justify-center px-2">
+  <div className="relative w-[98vw] max-w-[2200px]">
+    <Image
+      src="/images/branding/scritta-magico-camillo.png"
+      alt="Magico Camillo"
+      width={2001}
+      height={786}
+      priority
+      className="h-auto w-full select-none"
+    />
 
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr]">
+    <LogoMagicOverlay />
+  </div>
+</div>
 
+{/* HERO */}
+<div className="relative z-20 mx-auto max-w-7xl px-8 pt-0 lg:px-12">
+<div className="grid items-start gap-4 lg:grid-cols-[1fr_0.95fr]">
           {/* TESTO */}
+          <div className="lg:mt-26">
 
-          <div>
-
-            <p className="uppercase tracking-[0.45em] text-[#d4af37]">
-              MAGIA • COMICITÀ • EMOZIONE
+<p className="-mt-6 uppercase tracking-[0.45em] text-[#d4af37]">              MAGIA • COMICITÀ • EMOZIONE
             </p>
 
-            <h1 className="mt-8 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl">
-              La magia
+<h1 className="mt-3 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl">              La magia
               <br />
               che emoziona,
               <br />
@@ -36,8 +47,7 @@ export default function Hero() {
               nel cuore.
             </h1>
 
-            <p className="mt-10 max-w-xl text-xl leading-9 text-white/70">
-              Da oltre 15 anni porto spettacoli di magia,
+<p className="mt-6 max-w-xl text-xl leading-9 text-white/70">              Da oltre 15 anni porto spettacoli di magia,
               comicità e poesia in Family Hotel,
               teatri, scuole, piazze,
               festival e grandi eventi.
@@ -62,22 +72,29 @@ export default function Hero() {
             </div>
 
           </div>
+
           {/* FOTO */}
 
-          <div className="flex justify-center lg:justify-end">
-
-            <img
+<div className="flex justify-center lg:justify-end lg:-mt-0">            <img
               src="/images/hero.jpg"
               alt="Magico Camillo"
               draggable={false}
               className="
-                h-auto
-                w-full
-                max-w-[780px]
-                object-contain
-                select-none
-                xl:max-w-[920px]
-                2xl:max-w-[980px]
+            h-auto
+
+  w-full
+
+  max-w-[780px]
+
+  object-contain
+
+  select-none
+
+  lg:translate-x-12
+
+  xl:max-w-[920px]
+
+  2xl:max-w-[980px]
               "
             />
 
@@ -86,7 +103,6 @@ export default function Hero() {
         </div>
 
         {/* STATISTICHE */}
-
         <div className="mt-20">
           <StatsBar />
         </div>

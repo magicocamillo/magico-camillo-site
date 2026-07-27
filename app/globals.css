@@ -174,3 +174,73 @@
     }
   }
 }
+/* ==========================================================
+   MAGIC SIGNATURE
+========================================================== */
+
+.magic-comet {
+  position: absolute;
+  left: 8%;
+  top: 63%;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+
+  background: #fff8d6;
+
+  box-shadow:
+    0 0 8px #ffffff,
+    0 0 18px #ffd54d,
+    0 0 36px #ffb300;
+
+  opacity: 0;
+
+  animation: magic-comet 1.6s ease-out forwards;
+  animation-delay: .45s;
+}
+
+.magic-comet::before {
+  content: "";
+
+  position: absolute;
+
+  right: 100%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 70px;
+  height: 2px;
+
+  background: linear-gradient(
+    to left,
+    rgba(255,230,120,.95),
+    rgba(255,230,120,.35),
+    transparent
+  );
+}
+
+@keyframes magic-comet {
+
+  0% {
+    opacity: 0;
+    transform: translateX(0) scale(.25);
+  }
+
+  8% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateX(84vw) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(84vw) scale(.25);
+  }
+
+}
