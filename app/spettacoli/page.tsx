@@ -1,4 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Spettacoli",
+  description:
+    "Magia, comicità, teatro e poesia per bambini, famiglie, teatri, comuni, festival e Family Hotel. Scopri i format di Magico Camillo pensati per ogni tipo di evento.",
+  alternates: { canonical: "/spettacoli" },
+  openGraph: {
+    title: "Spettacoli | Magico Camillo",
+    description:
+      "Magia, comicità, teatro e poesia per bambini, famiglie, teatri, comuni, festival e Family Hotel. Scopri i format di Magico Camillo pensati per ogni tipo di evento.",
+    url: "/spettacoli",
+    images: [{ url: "/images/camillo/spettacoli-hero.jpg", width: 2048, height: 1312, alt: "Magico Camillo durante uno spettacolo" }],
+  },
+};
 
 const experienceCards = [
   {

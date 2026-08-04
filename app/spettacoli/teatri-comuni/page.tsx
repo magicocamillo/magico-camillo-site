@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "../components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Spettacolo per Teatri e Comuni",
+  description:
+    "Performance dal ritmo brillante per teatri, piazze e manifestazioni comunali: magia, comicità e poesia pensate per un pubblico misto di bambini e adulti.",
+  alternates: { canonical: "/spettacoli/teatri-comuni" },
+  openGraph: {
+    title: "Spettacolo per Teatri e Comuni | Magico Camillo",
+    description:
+      "Performance dal ritmo brillante per teatri, piazze e manifestazioni comunali: magia, comicità e poesia pensate per un pubblico misto di bambini e adulti.",
+    url: "/spettacoli/teatri-comuni",
+    images: [{ url: "/images/gallery/gallery 06.jpeg", alt: "Spettacolo per teatri e comuni di Magico Camillo" }],
+  },
+};
 
 const features = [
   {

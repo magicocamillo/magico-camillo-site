@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import PhotoGallery from "../components/PhotoGallery";
+
+export const metadata: Metadata = {
+  title: "Galleria Fotografica",
+  description:
+    "Una raccolta di fotografie reali che raccontano la magia, la comicità e le emozioni vissute durante gli spettacoli di Magico Camillo.",
+  alternates: { canonical: "/galleria-foto" },
+  openGraph: {
+    title: "Galleria Fotografica | Magico Camillo",
+    description:
+      "Una raccolta di fotografie reali che raccontano la magia, la comicità e le emozioni vissute durante gli spettacoli di Magico Camillo.",
+    url: "/galleria-foto",
+    images: [{ url: "/images/gallery/gallery 01.jpeg", alt: "Galleria fotografica di Magico Camillo" }],
+  },
+};
 
 export default function GalleriaFoto() {
   return (

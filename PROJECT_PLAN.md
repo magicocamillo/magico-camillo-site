@@ -42,19 +42,25 @@ Offrire una presenza online elegante e teatrale che comunichi l'identità artist
 - Tecnologia: Tailwind CSS (coerenza con repo esistente)
 
 ## 6. Prossime priorità (roadmap a breve termine)
-1. Completare Home (Hero, messaggio, CTA, elementi hero cinematografici)
-2. Sistemare `Experience` (trasformare in sezione fotografica cinematografica)
-3. Creare pagina `Spettacoli` (elenco spettacoli, dettagli tecnici, schede scaricabili)
-4. Creare pagina `Boutique` vetrina (griglia prodotti, immagini, pulsanti Acquista)
-5. Creare modulo `Contatti` (form semplice + integrazione email)
-6. Pubblicare su Vercel (deployment + configurazioni ambiente)
-7. Collegare il dominio `magicocamillo.com` (DNS, certificati SSL)
+1. ✅ Home (Hero, messaggio, CTA, elementi hero cinematografici) — fatto
+2. ✅ `Experience` (sezione fotografica cinematografica) — fatto
+3. ✅ Pagina `Spettacoli` (elenco + sotto-pagine family-hotel, feste-eventi, teatri-comuni) — fatto
+4. ✅ Pagina `Boutique` — fatto e oltre: catalogo, carrello, checkout, pagamenti Stripe, email ordini via Resend
+5. ✅ Modulo `Contatti` (form + FAQ) — fatto
+6. ✅ Pubblicare su Vercel — fatto (progetto collegato, `.vercel/project.json` presente)
+7. ⬜ Collegare il dominio `magicocamillo.com` (DNS, certificati SSL) — da verificare/completare
+
+Prossimi passi reali (non nel piano originale):
+- Integrazione CMS Sanity (vedi `CMS_PLAN.md`) — non ancora iniziata, contenuti Boutique tuttora statici in `app/data/*.ts`
+- Calendario eventi con integrazione iCal/Google — da verificare stato
+- Recensioni: pubblicazione/moderazione dinamica — da verificare stato
+- Scheda tecnica PDF scaricabile per organizzatori — da verificare stato
 
 ---
 
 Note operazionali rapide:
-- Preferire progressive enhancement: lanciare prima versioni statiche, poi integrare carrello e pagamenti.
+- Preferire progressive enhancement: lanciare prima versioni statiche, poi integrare carrello e pagamenti. → Fatto: Boutique è partita statica e ora ha già Stripe integrato.
 - Documentare i percorsi immagine e le policy di naming per `public/images`.
-- Preparare template email per conferme ordine e richieste spettacolo.
+- Preparare template email per conferme ordine e richieste spettacolo. → Fatto: Resend collegato per email ordini/contatti.
 
-Ultimo aggiornamento: 2026-07-06
+Ultimo aggiornamento: 2026-08-04

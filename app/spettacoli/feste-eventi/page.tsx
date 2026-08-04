@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "../components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Spettacolo per Feste ed Eventi",
+  description:
+    "Intrattenimento su misura per compleanni, cerimonie, feste private e serate speciali: magia e comicità che trasformano ogni evento in un ricordo indimenticabile.",
+  alternates: { canonical: "/spettacoli/feste-eventi" },
+  openGraph: {
+    title: "Spettacolo per Feste ed Eventi | Magico Camillo",
+    description:
+      "Intrattenimento su misura per compleanni, cerimonie, feste private e serate speciali: magia e comicità che trasformano ogni evento in un ricordo indimenticabile.",
+    url: "/spettacoli/feste-eventi",
+    images: [{ url: "/images/gallery/gallery 08.jpeg", alt: "Spettacolo per feste ed eventi di Magico Camillo" }],
+  },
+};
 
 const features = [
   {

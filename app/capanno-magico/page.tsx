@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Capanno Magico",
+  description:
+    "Uno spazio dedicato alla magia, allo spettacolo, alla creatività e agli incontri della Compagnia Magico Camillo APS.",
+  alternates: { canonical: "/capanno-magico" },
+  openGraph: {
+    title: "Capanno Magico | Magico Camillo",
+    description:
+      "Uno spazio dedicato alla magia, allo spettacolo, alla creatività e agli incontri della Compagnia Magico Camillo APS.",
+    url: "/capanno-magico",
+  },
+};
+
 export default function CapannoMagicoPage() {
   return (
     <main className="min-h-screen bg-black px-6 py-32 text-white lg:px-20">

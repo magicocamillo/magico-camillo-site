@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import ProductCard from "../components/ProductCard";
 import { products } from "../data/products";
+
+export const metadata: Metadata = {
+  title: "Boutique",
+  description:
+    "Prodotti originali, libri e kit di magia firmati Magico Camillo: porta un po' di magia anche a casa tua.",
+  alternates: { canonical: "/boutique" },
+  openGraph: {
+    title: "Boutique | Magico Camillo",
+    description:
+      "Prodotti originali, libri e kit di magia firmati Magico Camillo: porta un po' di magia anche a casa tua.",
+    url: "/boutique",
+    images: [{ url: "/images/products/kit-magia-1.jpg", alt: "Prodotti della Boutique di Magico Camillo" }],
+  },
+};
 
 export default function BoutiquePage() {
   return (

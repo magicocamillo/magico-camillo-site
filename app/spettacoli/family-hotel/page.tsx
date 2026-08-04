@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import ServiceDetailPage from "../components/ServiceDetailPage";
+
+export const metadata: Metadata = {
+  title: "Spettacolo per Family Hotel",
+  description:
+    "Da oltre 15 anni porto magia, comicità e poesia nei Family Hotel di tutta Italia: uno spettacolo di 55 minuti, professionale e adatto a ogni età.",
+  alternates: { canonical: "/spettacoli/family-hotel" },
+  openGraph: {
+    title: "Spettacolo per Family Hotel | Magico Camillo",
+    description:
+      "Da oltre 15 anni porto magia, comicità e poesia nei Family Hotel di tutta Italia: uno spettacolo di 55 minuti, professionale e adatto a ogni età.",
+    url: "/spettacoli/family-hotel",
+    images: [{ url: "/images/gallery/gallery 03.jpeg", alt: "Spettacolo Family Hotel di Magico Camillo" }],
+  },
+};
 
 const features = [
   {

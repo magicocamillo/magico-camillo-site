@@ -1,3 +1,19 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Video",
+  description:
+    "Timelapse, scenette comiche, backstage e spettacoli: entra nel mondo del Magico Camillo attraverso i video ufficiali.",
+  alternates: { canonical: "/video" },
+  openGraph: {
+    title: "Video | Magico Camillo",
+    description:
+      "Timelapse, scenette comiche, backstage e spettacoli: entra nel mondo del Magico Camillo attraverso i video ufficiali.",
+    url: "/video",
+    images: [{ url: "/images/camillo/poster-video.jpg", width: 1280, height: 850, alt: "Video di Magico Camillo" }],
+  },
+};
+
 export default function Video() {
   return (
     <main className="px-6 py-20 sm:px-10 lg:px-14">

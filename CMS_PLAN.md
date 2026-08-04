@@ -1,5 +1,7 @@
 CMS integration plan — Sanity for Magico Camillo
 
+> **Stato (2026-08-04): non iniziato.** Nessuna dipendenza o cartella Sanity nel repo. Il sito (Home, Chi sono, Spettacoli, Boutique con Stripe/Resend, Contatti) è già in produzione su Vercel con contenuti statici in `app/data/*.ts`. Questo piano resta valido come riferimento per quando si deciderà di avviare l'integrazione.
+
 Obiettivo
 
 Integrare Sanity come CMS headless per gestire contenuti dinamici: prodotti Boutique, eventi calendario, spettacoli, recensioni, galleria foto, video e richieste preventivo. Fornire flusso di lavoro redazionale, preview, e API stabili per il sito Next.js già esistente.
@@ -100,4 +102,4 @@ Considerazioni finali
 
 ---
 
-Ultimo aggiornamento: 2026-07-06
+Ultimo aggiornamento: 2026-08-04 (nota di stato aggiunta; contenuto piano invariato dal 2026-07-06)

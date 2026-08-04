@@ -1,5 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Recensioni",
+  description:
+    "4,7 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
+  alternates: { canonical: "/recensioni" },
+  openGraph: {
+    title: "Recensioni | Magico Camillo",
+    description:
+      "4,7 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
+    url: "/recensioni",
+    images: [{ url: "/images/camillo/panorama.jpeg", width: 2176, height: 1445, alt: "Magico Camillo davanti al pubblico" }],
+  },
+};
 
 const recensioni = [
   {

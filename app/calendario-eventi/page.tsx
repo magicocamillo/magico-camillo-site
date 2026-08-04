@@ -1,4 +1,18 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Calendario Spettacoli",
+  description:
+    "Scopri le prossime date degli spettacoli di Magico Camillo seguendo il profilo Instagram @magicocamillo, sempre aggiornato con eventi e dietro le quinte.",
+  alternates: { canonical: "/calendario-eventi" },
+  openGraph: {
+    title: "Calendario Spettacoli | Magico Camillo",
+    description:
+      "Scopri le prossime date degli spettacoli di Magico Camillo seguendo il profilo Instagram @magicocamillo, sempre aggiornato con eventi e dietro le quinte.",
+    url: "/calendario-eventi",
+  },
+};
 
 export default function Calendario() {
   return (
