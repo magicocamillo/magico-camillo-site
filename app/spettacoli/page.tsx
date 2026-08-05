@@ -151,7 +151,7 @@ export default function Spettacoli() {
               Portiamo emozioni, non soltanto spettacoli.
             </h2>
             <Link
-              href="/contatti"
+              href="/richiedi-preventivo"
               className="mt-8 inline-flex items-center justify-center rounded-full bg-[#d4af37] px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-black transition duration-300 hover:bg-[#e6c95f]"
             >
               Richiedi un preventivo

@@ -171,7 +171,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/contatti"
+              href="/richiedi-preventivo"
               className="hidden lg:inline-flex items-center justify-center rounded-full bg-[#d4af37] px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-black transition hover:scale-105 hover:bg-[#e5c24d]"
             >
               Richiedi preventivo
@@ -247,7 +247,7 @@ export default function Navbar() {
               </Link>
             ))}
                         <Link
-              href="/contatti"
+              href="/richiedi-preventivo"
               onClick={() => setMobileOpen(false)}
               className="mt-8 rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-black"
             >

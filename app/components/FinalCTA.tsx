@@ -34,7 +34,7 @@ export default function FinalCTA() {
         <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
 
           <Link
-            href="/contatti"
+            href="/richiedi-preventivo"
             className="inline-flex items-center justify-center rounded-full bg-[#d4af37] px-10 py-5 text-base font-semibold uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-105 hover:bg-[#e7c75b]"
           >
             Richiedi un preventivo

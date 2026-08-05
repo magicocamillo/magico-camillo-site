@@ -15,7 +15,7 @@ export default function Footer() {
           </p>
 
           <Link
-            href="/contatti"
+            href="/richiedi-preventivo"
             className="mt-6 inline-block rounded-full bg-[#d4af37] px-6 py-3 font-semibold text-black transition hover:scale-105 hover:bg-[#e5c24d]"
           >
             Richiedi un preventivo

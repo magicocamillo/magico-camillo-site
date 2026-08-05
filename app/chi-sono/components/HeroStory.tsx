@@ -43,7 +43,7 @@ export default function HeroStory() {
               </Link>
 
               <Link
-                href="/contatti"
+                href="/richiedi-preventivo"
                 className="rounded-full border border-[#d4af37] px-8 py-4 text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
               >
                 Richiedi un preventivo

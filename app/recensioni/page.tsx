@@ -336,7 +336,7 @@ export default function RecensioniPage() {
           </p>
 
           <Link
-            href="/contatti"
+            href="/richiedi-preventivo"
             className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[#d4af37] px-8 py-4 font-semibold text-black transition hover:scale-[1.03] hover:bg-[#e4c457]"
           >
             Richiedi un preventivo

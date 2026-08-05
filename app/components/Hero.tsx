@@ -125,7 +125,7 @@ export default function Hero() {
   </Link>
 
   <Link
-    href="/contatti"
+    href="/richiedi-preventivo"
     className="rounded-full bg-[#d4af37] px-10 py-4 font-semibold uppercase tracking-[0.18em] text-black transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(212,175,55,.35)]"
   >
     Richiedi preventivo

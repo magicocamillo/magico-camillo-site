@@ -121,7 +121,7 @@ export default function ServiceDetailPage({
             Ti contatteremo per definire il format ideale, la durata e le esigenze tecniche del tuo evento.
           </p>
           <Link
-            href="/contatti"
+            href="/richiedi-preventivo"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-[#d4af37] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-[#e6c95f]"
           >
             Richiedi un preventivo
