@@ -124,7 +124,7 @@ export default function FlyingCardsSection() {
           </p>
 
           <h2 className="mt-6 text-4xl font-semibold text-white lg:text-5xl">
-            Come per magia, spuntano le carte
+            PRESTA ATTENZIONE, NEL MONDO DI CAMILLO ACCADONO TANTE SORPRESE...
           </h2>
 
           <p className="mt-8 text-lg leading-8 text-white/70">
