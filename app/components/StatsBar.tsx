@@ -46,7 +46,13 @@ export default function StatsBar() {
             </div>
 
             <div className="relative">
-              <div className="text-5xl font-semibold leading-none text-[#d4af37] whitespace-nowrap">
+              <div
+                className={`font-semibold leading-none text-[#d4af37] whitespace-nowrap ${
+                  item.value === "★★★★★"
+                    ? "text-3xl tracking-tighter"
+                    : "text-5xl"
+                }`}
+              >
                 {item.value}
               </div>
 

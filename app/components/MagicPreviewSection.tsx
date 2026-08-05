@@ -47,6 +47,7 @@ export default function MagicPreviewSection() {
             ref={videoRef}
             className="w-full"
             src="/video/magia-camillo.mp4"
+            poster="/images/about/stage.jpg"
             playsInline
             preload="metadata"
             controls={started}

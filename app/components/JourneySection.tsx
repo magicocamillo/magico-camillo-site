@@ -53,6 +53,7 @@ export default function JourneySection() {
             ref={videoRef}
             className="block w-full"
             src="/video/viaggio-andalo.mp4"
+            poster="/images/camillo/poster-video.jpg"
             playsInline
             controls={playing}
             preload="auto"
