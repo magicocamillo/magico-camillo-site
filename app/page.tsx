@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import JourneySection from "./components/JourneySection";
 import Experience from "./components/Experience";
+import FlyingCardsSection from "./components/FlyingCardsSection";
 import WhyChooseMe from "./components/WhyChooseMe";
 import MagicPreviewSection from "./components/MagicPreviewSection";
 import MagicMomentsSection from "./components/MagicMomentsSection";
@@ -15,6 +16,8 @@ export default function Home() {
       <JourneySection />
 
       <Experience />
+
+      <FlyingCardsSection />
 
       <WhyChooseMe />
 
