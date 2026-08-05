@@ -10,6 +10,29 @@ export default function LogoMagicOverlay() {
     <div className="pointer-events-none absolute inset-0 z-30 overflow-visible">
 
       {/* =========================
+          BAGLIORE CONTINUO (drop-shadow pulsante sulla scritta)
+      ========================== */}
+
+      <motion.div
+        className="absolute left-1/2 top-[63%] h-40 w-[75%] max-w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(212,175,55,0.55) 0%, rgba(212,175,55,0.22) 40%, transparent 72%)",
+          filter: "blur(45px)",
+          mixBlendMode: "screen",
+        }}
+        animate={{
+          opacity: [0.4, 0.85, 0.4],
+          scale: [0.97, 1.03, 0.97],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* =========================
           SCIA SINISTRA
       ========================== */}
 
@@ -160,18 +183,24 @@ export default function LogoMagicOverlay() {
       />
 
       {/* =========================
-          SCINTILLE
+          SCINTILLE INIZIALI
       ========================== */}
 
       {[
-        [-70, -55],
-        [70, -55],
-        [-55, 55],
-        [55, 55],
-        [0, -85],
-        [0, 85],
-        [-95, 0],
-        [95, 0],
+        [85, 0],
+        [77, 37],
+        [53, 67],
+        [19, 83],
+        [-19, 83],
+        [-53, 67],
+        [-77, 37],
+        [-85, 0],
+        [-77, -37],
+        [-53, -67],
+        [-19, -83],
+        [19, -83],
+        [53, -67],
+        [77, -37],
       ].map(([x, y], i) => (
         <motion.div
           key={i}
@@ -236,6 +265,86 @@ export default function LogoMagicOverlay() {
           }}
         />
       </motion.div>
+
+      {/* =========================
+          SCINTILLE CICLICHE (si ripetono ogni 5s)
+      ========================== */}
+
+      {[
+        [-35, -25],
+        [35, -25],
+        [-25, 30],
+        [25, 30],
+        [0, -42],
+      ].map(([x, y], i) => (
+        <motion.div
+          key={`loop-spark-${i}`}
+          className="absolute left-1/2 top-[63%]"
+          initial={{
+            x: "-50%",
+            y: "-50%",
+            opacity: 0,
+            scale: 0,
+          }}
+          animate={{
+            x: ["-50%", `calc(-50% + ${x}px)`],
+            y: ["-50%", `calc(-50% + ${y}px)`],
+            opacity: [0, 0.85, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            delay: 3.6 + i * 0.04,
+            duration: 0.7,
+            repeat: Infinity,
+            repeatDelay: 4.3,
+            ease: "easeOut",
+          }}
+        >
+          <div
+            className="rounded-full"
+            style={{
+              width: 4,
+              height: 4,
+              background: "#fff8d8",
+              boxShadow: "0 0 6px #fff7cf, 0 0 14px #f7d55d",
+            }}
+          />
+        </motion.div>
+      ))}
+
+      {/* =========================
+          PULVISCOLO MAGICO (particelle di polvere dorata in caduta lenta, loop permanente)
+      ========================== */}
+
+      {[
+        { left: "40%", size: 3, duration: 7, delay: 0, drift: 6 },
+        { left: "50%", size: 2, duration: 9, delay: 2.5, drift: -6 },
+        { left: "60%", size: 3, duration: 8, delay: 5, drift: 6 },
+      ].map((particle, i) => (
+        <motion.div
+          key={`dust-${i}`}
+          className="absolute top-[68%] rounded-full"
+          style={{
+            left: particle.left,
+            width: particle.size,
+            height: particle.size,
+            background: "#f7d55d",
+            boxShadow: "0 0 5px #f7d55d, 0 0 10px rgba(247,213,93,0.5)",
+          }}
+          initial={{ y: 0, x: 0, opacity: 0 }}
+          animate={{
+            y: [0, 55, 0],
+            x: [0, particle.drift, 0],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
 
     </div>
   );
