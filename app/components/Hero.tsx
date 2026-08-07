@@ -76,25 +76,21 @@ export default function Hero() {
     ease: [0.22, 1, 0.36, 1],
   }}
 >
-  La{" "}
-  <span className="bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent">
-    magia
+  Magico Camillo
+
+  <span className="mt-8 block bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent text-3xl font-semibold leading-tight sm:text-4xl xl:text-5xl">
+    Spettacoli di magia per bambini, famiglie,
+    <br />
+    Family Hotel, resort, teatri ed eventi
   </span>
 
-  <br />
-  che emoziona,
-  <br />
-  fa ridere
-  <br />
-  e resta
-  <br />
-  nel cuore.
-
-<span className="mt-8 block text-xl font-normal leading-relaxed text-white/85 sm:text-2xl">
-  Spettacoli di magia per bambini, famiglie,
-  <br />
-  Family Hotel, resort, teatri ed eventi.
-</span>
+  <span className="mt-8 block text-xl font-normal leading-relaxed text-white/85 sm:text-2xl">
+    La magia che emoziona,
+    <br />
+    fa ridere
+    <br />
+    e resta nel cuore.
+  </span>
 </motion.h1>
 
   <motion.p

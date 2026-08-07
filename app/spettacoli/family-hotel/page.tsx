@@ -2,22 +2,29 @@ import type { Metadata } from "next";
 import ServiceDetailPage from "../components/ServiceDetailPage";
 
 export const metadata: Metadata = {
-  title: "Spettacolo per Family Hotel",
+  title: "Mago per Family Hotel | Spettacoli di magia per bambini e famiglie",
   description:
-    "Da oltre 15 anni porto magia, comicità e poesia nei Family Hotel di tutta Italia: uno spettacolo di 55 minuti, professionale e adatto a ogni età.",
-  alternates: { canonical: "/spettacoli/family-hotel" },
+    "Magico Camillo porta spettacoli di magia comica per Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, Lago di Garda e tutta Italia.",
+  alternates: {
+    canonical: "/spettacoli/family-hotel",
+  },
   openGraph: {
-    title: "Spettacolo per Family Hotel | Magico Camillo",
+    title: "Mago per Family Hotel | Magico Camillo",
     description:
-      "Da oltre 15 anni porto magia, comicità e poesia nei Family Hotel di tutta Italia: uno spettacolo di 55 minuti, professionale e adatto a ogni età.",
+      "Magico Camillo porta spettacoli di magia comica per Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, Lago di Garda e tutta Italia.",
     url: "/spettacoli/family-hotel",
-    images: [{ url: "/images/gallery/gallery 03.jpeg", alt: "Spettacolo Family Hotel di Magico Camillo" }],
+    images: [
+      {
+        url: "/images/gallery/gallery 03.jpeg",
+        alt: "Spettacolo Family Hotel di Magico Camillo",
+      },
+    ],
   },
 };
 
 const features = [
   {
-    title: "Spettacoli su misura",
+    title: "Spettacoli su misura per Family Hotel",
     description:
       "Format pensati per Family Hotel, villaggi turistici e strutture ricettive.",
   },
@@ -27,14 +34,14 @@ const features = [
       "Bambini, genitori e nonni partecipano insieme in un'esperienza divertente.",
   },
   {
-    title: "Audio professionale",
+    title: "Audio e luci professionali",
     description:
-      "Impianto audio e luci professionale per garantire la migliore qualità.",
+      "Impianto audio e luci professionali per garantire uno spettacolo di alto livello in qualsiasi struttura.",
   },
   {
     title: "Finale con bolle di sapone",
     description:
-      "Un finale poetico che lascia un ricordo speciale a tutti gli ospiti.",
+      "Un finale poetico che lascia un ricordo speciale a grandi e piccoli.",
   },
 ];
 
@@ -48,10 +55,10 @@ const technicalRequirements = [
 export default function FamilyHotelPage() {
   return (
     <ServiceDetailPage
-      title="Family Hotel"
-      intro="Lo spettacolo pensato per regalare una serata indimenticabile a bambini e famiglie."
+      title="Mago per Family Hotel"
+      intro="Da oltre 15 anni porto spettacoli di magia comica nei Family Hotel italiani, coinvolgendo bambini, ragazzi e genitori con uno show ricco di comicità, emozioni e meraviglia."
       heroImage="/images/gallery/gallery 03.jpeg"
-      description="Da oltre 15 anni porto magia, comicità e poesia nei Family Hotel di tutta Italia. Uno spettacolo professionale, coinvolgente e adatto a ogni età."
+      description="Uno spettacolo professionale di circa 55 minuti che unisce magia comica, teatro, musica e coinvolgimento del pubblico. Ideale per Family Hotel, resort e villaggi turistici che desiderano offrire un'esperienza memorabile a bambini, ragazzi e adulti."
       galleryImages={[
         "/images/gallery/gallery 04.jpeg",
         "/images/gallery/gallery 05.jpeg",
