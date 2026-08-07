@@ -12,12 +12,12 @@ const stats = [
     label: "Spettacoli realizzati",
   },
   {
-    value: "100%",
-    label: "Spettacoli dal vivo",
+    value: "100+",
+    label: "Hotel e strutture servite",
   },
   {
     value: "★★★★★",
-    label: "Passione",
+    label: "Recensioni dei clienti",
   },
 ];
 

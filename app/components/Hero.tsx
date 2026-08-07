@@ -58,38 +58,44 @@ export default function Hero() {
     MAGIA COMICA • TEATRO • MERAVIGLIA
   </motion.p>
 
-  <motion.h1
-    className="mt-3 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl"
-    initial={{
-      opacity: 0,
-      filter: "blur(18px)",
-      scale: 1.03,
-    }}
-    animate={{
-      opacity: 1,
-      filter: "blur(0px)",
-      scale: 1,
-    }}
-    transition={{
-      duration: 1.4,
-      delay: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-  >
-    La{" "}
-    <span className="bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent">
-      magia
-    </span>
+ <motion.h1
+  className="mt-3 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl"
+  initial={{
+    opacity: 0,
+    filter: "blur(18px)",
+    scale: 1.03,
+  }}
+  animate={{
+    opacity: 1,
+    filter: "blur(0px)",
+    scale: 1,
+  }}
+  transition={{
+    duration: 1.4,
+    delay: 0.8,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+>
+  La{" "}
+  <span className="bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent">
+    magia
+  </span>
 
-    <br />
-    che emoziona,
-    <br />
-    fa ridere
-    <br />
-    e resta
-    <br />
-    nel cuore.
-  </motion.h1>
+  <br />
+  che emoziona,
+  <br />
+  fa ridere
+  <br />
+  e resta
+  <br />
+  nel cuore.
+
+<span className="mt-8 block text-xl font-normal leading-relaxed text-white/85 sm:text-2xl">
+  Spettacoli di magia per bambini, famiglie,
+  <br />
+  Family Hotel, resort, teatri ed eventi.
+</span>
+</motion.h1>
 
   <motion.p
     className="mt-6 max-w-xl text-xl leading-9 text-white/70"
@@ -100,7 +106,7 @@ export default function Hero() {
       delay: 1.25,
     }}
   >
-    Spettacoli di magia comica dove illusioni,
+    Spettacoli di magia comica che uniscono illusioni,
     comicità e poesia si intrecciano per
     emozionare bambini, ragazzi e adulti.
     Ogni spettacolo è costruito per lasciare
