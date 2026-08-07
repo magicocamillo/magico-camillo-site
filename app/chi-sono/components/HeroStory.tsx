@@ -28,10 +28,12 @@ export default function HeroStory() {
             </h1>
 
             <p className="mt-10 text-lg leading-9 text-white/70 sm:text-xl">
-              Da oltre quindici anni porto sui palchi di tutta Italia
-              spettacoli nei quali magia, comicità, teatro e tecnologia si
-              fondono per regalare emozioni autentiche a bambini, famiglie e
-              pubblico di ogni età.
+              Da oltre quindici anni porto spettacoli di magia comica in Family
+              Hotel, teatri, scuole, biblioteche, comuni ed eventi privati in
+              Trentino-Alto Adige, sul Lago di Garda e in tutta Italia. Ogni
+              spettacolo unisce magia, comicità, teatro e tecnologia per
+              regalare emozioni autentiche a bambini, famiglie e pubblico di
+              ogni età.
             </p>
 
             <div className="mt-12 flex flex-wrap gap-5">
@@ -67,9 +69,9 @@ export default function HeroStory() {
 
           <p className="mt-8 leading-9 text-white/70">
             Per oltre ventitré anni ho prestato servizio nella{" "}
-            <strong className="text-white">Polizia di Stato</strong>. È stato
-            un percorso che mi ha insegnato disciplina, responsabilità,
-            rispetto e il valore del rapporto con le persone.
+            <strong className="text-white">Polizia di Stato</strong>. È stato un
+            percorso che mi ha insegnato disciplina, responsabilità, rispetto e
+            il valore del rapporto con le persone.
           </p>
 
           <p className="mt-6 leading-9 text-white/70">
@@ -85,9 +87,15 @@ export default function HeroStory() {
           </p>
 
           <p className="mt-6 leading-9 text-white/70">
-            Nel 2012 ho scelto di lasciare una professione sicura e
-            trasformare la mia passione nel mio lavoro. Non è stato un salto
-            nel vuoto, ma un passo verso la persona che desideravo diventare.
+            Nel 2012 ho scelto di lasciare una professione sicura e trasformare
+            la mia passione nel mio lavoro.
+          </p>
+
+          <p className="mt-6 leading-9 text-white/70">
+            Da allora porto i miei spettacoli in Family Hotel, resort, teatri,
+            scuole, biblioteche e manifestazioni pubbliche, continuando a
+            costruire ogni giorno nuovi momenti di stupore, risate e poesia per
+            bambini, ragazzi e famiglie.
           </p>
         </div>
 
@@ -106,7 +114,8 @@ export default function HeroStory() {
           <p className="mt-10 leading-8 text-white/70">
             Oggi porto ancora con me i valori imparati durante gli anni di
             servizio, ma li metto al servizio di qualcosa di diverso: creare
-            meraviglia, emozionare e far sorridere.
+            meraviglia, emozionare e far sorridere migliaia di bambini,
+            famiglie e spettatori attraverso spettacoli di magia comica.
           </p>
         </div>
       </section>
