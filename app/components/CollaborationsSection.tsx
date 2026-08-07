@@ -73,7 +73,7 @@ const collaborations: Collaboration[] = [
   image: "/images/collaborazioni/gardea-1.jpg",
   imageHover: "/images/collaborazioni/gardea-2.jpg",
   description:
-    "Dal 2026 collaboro con il Gardea SoulFamily Resort di Torbole sul Garda, una struttura pensata per regalare alle famiglie un'esperienza di vacanza indimenticabile. Tra piscine, attività dedicate ai bambini, spazi immersi nella natura e un'accoglienza di altissimo livello, porto i miei spettacoli di magia per rendere ancora più speciale il soggiorno di grandi e piccoli.",
+    "Dal 2025 collaboro con il Gardea SoulFamily Resort di Torbole sul Garda, una struttura pensata per regalare alle famiglie un'esperienza di vacanza indimenticabile. Tra piscine, attività dedicate ai bambini, spazi immersi nella natura e un'accoglienza di altissimo livello, porto i miei spettacoli di magia per rendere ancora più speciale il soggiorno di grandi e piccoli.",
   website: "https://www.gardeahotel.com",
 },
 ];
