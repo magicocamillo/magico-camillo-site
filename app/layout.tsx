@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Cormorant_Garamond,
+} from "next/font/google";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
@@ -14,6 +18,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const siteUrl = "https://magicocamillo.com";
@@ -34,34 +44,44 @@ const defaultOgImage = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
+  verification: {
+    google: "2VDUyN-juG3fEHqKhtR12GcaiwKaS7wVTKRuxAOFrvI",
+  },
+
   title: {
     default: defaultTitle,
     template: `%s | ${siteName}`,
   },
+
   description: defaultDescription,
+
   keywords: [
-     "Magico Camillo",
-  "mago per bambini",
-  "spettacoli di magia",
-  "Family Hotel",
-  "mago per hotel",
-  "mago Trentino",
-  "mago Lago di Garda",
-  "spettacoli per famiglie",
-  "spettacoli per scuole",
-  "spettacoli per biblioteche",
-  "teatro ragazzi",
-  "bolle di sapone",
-  "articoli di magia",
-  "giochi di magia",
-  "bacchetta magica",
+    "Magico Camillo",
+    "mago per bambini",
+    "spettacoli di magia",
+    "Family Hotel",
+    "mago per hotel",
+    "mago Trentino",
+    "mago Lago di Garda",
+    "spettacoli per famiglie",
+    "spettacoli per scuole",
+    "spettacoli per biblioteche",
+    "teatro ragazzi",
+    "bolle di sapone",
+    "articoli di magia",
+    "giochi di magia",
+    "bacchetta magica",
   ],
+
   authors: [{ name: "Magico Camillo" }],
   creator: "Magico Camillo",
   publisher: "Magico Camillo",
+
   alternates: {
     canonical: "/",
   },
+
   robots: {
     index: true,
     follow: true,
@@ -70,6 +90,7 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+
   openGraph: {
     type: "website",
     locale: "it_IT",
@@ -79,6 +100,7 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: [defaultOgImage],
   },
+
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
@@ -117,7 +139,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable}`}
     >
       <body className="min-h-screen bg-black text-white font-sans">
         <script
