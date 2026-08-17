@@ -4,19 +4,19 @@ import ServiceDetailPage from "../components/ServiceDetailPage";
 export const metadata: Metadata = {
   title: "Mago per Family Hotel | Spettacoli di magia per bambini e famiglie",
   description:
-    "Magico Camillo porta spettacoli di magia comica per Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, Lago di Garda e tutta Italia.",
+    "Magico Camillo porta spettacoli professionali di magia comica nei Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, sul Lago di Garda e in tutta Italia.",
   alternates: {
     canonical: "/spettacoli/family-hotel",
   },
   openGraph: {
     title: "Mago per Family Hotel | Magico Camillo",
     description:
-      "Magico Camillo porta spettacoli di magia comica per Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, Lago di Garda e tutta Italia.",
+      "Magico Camillo porta spettacoli professionali di magia comica nei Family Hotel, resort e villaggi turistici. Oltre 15 anni di esperienza con bambini e famiglie in Trentino-Alto Adige, sul Lago di Garda e in tutta Italia.",
     url: "/spettacoli/family-hotel",
     images: [
       {
         url: "/images/gallery/gallery 03.jpeg",
-        alt: "Spettacolo Family Hotel di Magico Camillo",
+        alt: "Spettacolo di Magico Camillo in Family Hotel",
       },
     ],
   },
@@ -24,41 +24,41 @@ export const metadata: Metadata = {
 
 const features = [
   {
-    title: "Spettacoli su misura per Family Hotel",
+    title: "Esperienza nei Family Hotel",
     description:
-      "Format pensati per Family Hotel, villaggi turistici e strutture ricettive.",
+      "Da oltre quindici anni Magico Camillo collabora con Family Hotel e resort, proponendo spettacoli pensati per il pubblico delle vacanze.",
   },
   {
-    title: "Coinvolgimento di tutta la famiglia",
+    title: "Coinvolge tutta la famiglia",
     description:
-      "Bambini, genitori e nonni partecipano insieme in un'esperienza divertente.",
+      "Uno spettacolo che diverte bambini, ragazzi, genitori e nonni, trasformando ogni serata in un momento condiviso di emozione e divertimento.",
   },
   {
-    title: "Audio e luci professionali",
+    title: "Service professionale completo",
     description:
-      "Impianto audio e luci professionali per garantire uno spettacolo di alto livello in qualsiasi struttura.",
+      "Impianto audio Bose, luci LED professionali e allestimento completamente autonomo per garantire uno spettacolo di alta qualità.",
   },
   {
-    title: "Finale con bolle di sapone",
+    title: "Finale poetico con bolle di sapone",
     description:
-      "Un finale poetico che lascia un ricordo speciale a grandi e piccoli.",
+      "Un finale emozionante che conclude lo spettacolo con un'atmosfera di meraviglia, perfetta per essere ricordata da tutta la famiglia.",
   },
 ];
 
 const technicalRequirements = [
-  "Spazio minimo consigliato: 3 x 3 metri.",
+  "Spazio minimo consigliato: 3 × 3 metri.",
   "Una presa di corrente 220V.",
-  "Area libera davanti al pubblico.",
-  "Tempo di allestimento: circa 30 minuti.",
+  "Accesso con furgone per carico e scarico dell'attrezzatura.",
+  "Sala libera durante le operazioni di montaggio.",
 ];
 
 export default function FamilyHotelPage() {
   return (
     <ServiceDetailPage
       title="Mago per Family Hotel"
-      intro="Da oltre 15 anni porto spettacoli di magia comica nei Family Hotel italiani, coinvolgendo bambini, ragazzi e genitori con uno show ricco di comicità, emozioni e meraviglia."
+      intro="Da oltre quindici anni Magico Camillo porta spettacoli di magia comica nei Family Hotel italiani, regalando serate di grande coinvolgimento a bambini, famiglie e ospiti di ogni età."
       heroImage="/images/gallery/gallery 03.jpeg"
-      description="Uno spettacolo professionale di circa 55 minuti che unisce magia comica, teatro, musica e coinvolgimento del pubblico. Ideale per Family Hotel, resort e villaggi turistici che desiderano offrire un'esperienza memorabile a bambini, ragazzi e adulti."
+      description="Ogni spettacolo dura circa 55 minuti e unisce magia, comicità, teatro, musica, tecnologia e partecipazione del pubblico. Un format professionale, elegante e coinvolgente, ideale per Family Hotel, resort e villaggi turistici che desiderano offrire un'esperienza di qualità ai propri ospiti."
       galleryImages={[
         "/images/gallery/gallery 04.jpeg",
         "/images/gallery/gallery 05.jpeg",

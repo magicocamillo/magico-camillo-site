@@ -18,7 +18,7 @@ export default function Hero() {
 
   {/* LOGO */}
 
-  <div className="relative z-20 -mt-12 -mb-12 flex justify-center px-2">
+  <div className="relative z-20 mt-24 -mb-8 lg:-mt-12 lg:-mb-12 flex justify-center px-2">
 
     <div className="relative w-[98vw] max-w-[2200px]">
 

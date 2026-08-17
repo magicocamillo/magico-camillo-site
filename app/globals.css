@@ -9,10 +9,17 @@
 }
 
 @theme inline {
+
   --color-background: var(--background);
+
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
+
   --font-mono: var(--font-geist-mono);
+
+  --font-story: var(--font-cormorant);
+
 }
 
 @layer base {
@@ -243,4 +250,11 @@
     transform: translateX(84vw) scale(.25);
   }
 
+}
+/* ==========================================================
+   STORY FONT
+========================================================== */
+
+.font-story {
+  font-family: var(--font-story), Georgia, serif;
 }
