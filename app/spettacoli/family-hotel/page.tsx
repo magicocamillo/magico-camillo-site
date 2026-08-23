@@ -59,13 +59,7 @@ export default function FamilyHotelPage() {
       intro="Da oltre quindici anni Magico Camillo porta spettacoli di magia comica nei Family Hotel italiani, regalando serate di grande coinvolgimento a bambini, famiglie e ospiti di ogni età."
       heroImage="/images/gallery/gallery 03.jpeg"
       description="Ogni spettacolo dura circa 55 minuti e unisce magia, comicità, teatro, musica, tecnologia e partecipazione del pubblico. Un format professionale, elegante e coinvolgente, ideale per Family Hotel, resort e villaggi turistici che desiderano offrire un'esperienza di qualità ai propri ospiti."
-      galleryImages={[
-        "/images/gallery/gallery 04.jpeg",
-        "/images/gallery/gallery 05.jpeg",
-        "/images/gallery/gallery 06.jpeg",
-      ]}
       features={features}
-      technicalRequirements={technicalRequirements}
     />
   );
 }

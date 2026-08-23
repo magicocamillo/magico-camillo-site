@@ -52,13 +52,7 @@ export default function FesteEventiPage() {
       intro="Intrattenimento su misura per compleanni, cerimonie, feste private e serate speciali."
       heroImage="/images/gallery/gallery 08.jpeg"
       description="Ogni evento viene trasformato in una narrazione coinvolgente, con momenti di magia e umorismo pensati per lasciare il segno in ogni ospite."
-      galleryImages={[
-        "/images/gallery/gallery 02.jpeg",
-        "/images/gallery/gallery 03.jpeg",
-        "/images/gallery/gallery 10.jpeg",
-      ]}
       features={features}
-      technicalRequirements={technicalRequirements}
     />
   );
 }
