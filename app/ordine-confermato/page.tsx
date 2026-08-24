@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 const ORDER_CONFIRMATION_KEY = "magico-camillo-ultimo-ordine";
 
@@ -25,7 +26,10 @@ interface ConfirmationData {
   data: string;
 }
 
-export default function OrdineConfermatoPage() {
+function OrdineConfermatoContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+
   const [order, setOrder] = useState<ConfirmationData | null>(null);
   const [checked, setChecked] = useState(false);
 
@@ -61,6 +65,29 @@ export default function OrdineConfermatoPage() {
   }
 
   if (!order) {
+    if (sessionId) {
+      return (
+        <main className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
+          <div className="w-full max-w-xl rounded-[35px] border border-white/10 bg-[#111] p-10 text-center">
+            <h1 className="text-4xl font-bold">
+              Grazie per il tuo ordine!
+            </h1>
+
+            <p className="mt-5 leading-7 text-white/60">
+              Riceverai una email di conferma a breve.
+            </p>
+
+            <Link
+              href="/boutique"
+              className="mt-8 inline-flex rounded-full bg-[#d4af37] px-8 py-4 font-bold text-black"
+            >
+              Torna alla Boutique
+            </Link>
+          </div>
+        </main>
+      );
+    }
+
     return (
       <main className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
         <div className="w-full max-w-xl rounded-[35px] border border-white/10 bg-[#111] p-10 text-center">
@@ -212,5 +239,19 @@ export default function OrdineConfermatoPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+export default function OrdineConfermatoPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-black">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-[#d4af37]" />
+        </main>
+      }
+    >
+      <OrdineConfermatoContent />
+    </Suspense>
   );
 }

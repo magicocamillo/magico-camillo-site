@@ -91,11 +91,49 @@ export default function CheckoutPage() {
       return;
     }
 
+    const cliente = {
+      ...form,
+      paese: "Italia",
+    };
+
+    if (payment === "Carta di credito") {
+      try {
+        setSending(true);
+
+        const response = await fetch("/api/checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cliente,
+            prodotti: items,
+            spedizione: shipping,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (result.url) {
+          window.location.href = result.url;
+          return;
+        }
+
+        window.alert(
+          result.message || "Errore durante la creazione del pagamento."
+        );
+      } catch (error) {
+        console.error("Errore checkout carta di credito:", error);
+        window.alert("Errore di connessione.");
+      } finally {
+        setSending(false);
+      }
+
+      return;
+    }
+
     const order = {
-      cliente: {
-        ...form,
-        paese: "Italia",
-      },
+      cliente,
       prodotti: items,
       subtotale: subtotal,
       spedizione: shipping,
@@ -325,6 +363,17 @@ export default function CheckoutPage() {
                 />
 
                 <span>PayPal</span>
+              </label>
+
+              <label className="flex cursor-pointer items-center gap-3">
+                <input
+                  type="radio"
+                  name="payment"
+                  checked={payment === "Carta di credito"}
+                  onChange={() => setPayment("Carta di credito")}
+                />
+
+                <span>Carta di credito</span>
               </label>
             </div>
 
