@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       lineItems.push({
         price_data: {
           currency: "eur",
-          product_data: { name: "Spese di spedizione" },
+          product_data: { name: "Spese di spedizione", images: undefined },
           unit_amount: Math.round(spedizione * 100),
         },
         quantity: 1,
