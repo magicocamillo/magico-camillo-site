@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { products } from "../../data/products";
+import ProductJsonLd from "../../components/ProductJsonLd";
 import ProductPageClient from "./ProductPageClient";
 
 type Params = { id: string };
@@ -37,6 +38,21 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductPage() {
-  return <ProductPageClient />;
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { id } = await params;
+  const product = products.find((item) => item.id === id);
+
+  return (
+    <>
+      {product && (
+        <ProductJsonLd product={product} path={`/boutique/${product.id}`} />
+      )}
+
+      <ProductPageClient />
+    </>
+  );
 }

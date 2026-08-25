@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { products } from "../../data/products";
+import ProductJsonLd from "../../components/ProductJsonLd";
 
 import BookHero from "../../components/book/BookHero";
 import BookStory from "../../components/book/BookStory";
@@ -33,6 +34,8 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-black pt-40 text-white">
+
+      <ProductJsonLd product={product} path="/boutique/il-suono-delle-cose" />
 
       <BookHero product={product} />
 

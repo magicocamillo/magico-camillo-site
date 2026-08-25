@@ -3,14 +3,14 @@ import ProductCard from "../components/ProductCard";
 import { products } from "../data/products";
 
 export const metadata: Metadata = {
-  title: "Boutique",
+  title: "Boutique — Kit e Giochi di Magia per Bambini",
   description:
-    "Prodotti originali, libri e kit di magia firmati Magico Camillo: porta un po' di magia anche a casa tua.",
+    "Acquista online kit di magia, giochi e libri illustrati firmati Magico Camillo: l'idea regalo perfetta per bambini che amano la magia.",
   alternates: { canonical: "/boutique" },
   openGraph: {
-    title: "Boutique | Magico Camillo",
+    title: "Boutique — Kit e Giochi di Magia per Bambini | Magico Camillo",
     description:
-      "Prodotti originali, libri e kit di magia firmati Magico Camillo: porta un po' di magia anche a casa tua.",
+      "Acquista online kit di magia, giochi e libri illustrati firmati Magico Camillo: l'idea regalo perfetta per bambini che amano la magia.",
     url: "/boutique",
     images: [{ url: "/images/products/kit-magia-1.jpg", alt: "Prodotti della Boutique di Magico Camillo" }],
   },

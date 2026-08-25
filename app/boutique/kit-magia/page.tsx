@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { products } from "../../data/products";
+import ProductJsonLd from "../../components/ProductJsonLd";
 import KitMagiaClient from "./KitMagiaClient";
 
 export const metadata: Metadata = {
@@ -16,5 +18,15 @@ export const metadata: Metadata = {
 };
 
 export default function KitMagiaPage() {
-  return <KitMagiaClient />;
+  const product = products.find((p) => p.id === "kit-magia");
+
+  return (
+    <>
+      {product && (
+        <ProductJsonLd product={product} path="/boutique/kit-magia" />
+      )}
+
+      <KitMagiaClient />
+    </>
+  );
 }

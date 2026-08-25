@@ -72,6 +72,11 @@ export const metadata: Metadata = {
     "articoli di magia",
     "giochi di magia",
     "bacchetta magica",
+    "kit di magia per bambini",
+    "negozio di magia online",
+    "regali per bambini",
+    "idee regalo bambini magia",
+    "acquista giochi di magia online",
   ],
 
   authors: [{ name: "Magico Camillo" }],
