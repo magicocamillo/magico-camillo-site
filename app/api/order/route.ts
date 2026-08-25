@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   sendOrderConfirmationEmail,
   sendBankTransferInstructionsEmail,
+  sendPaypalInstructionsEmail,
 } from "./send-order-email";
 
 export const runtime = "nodejs";
@@ -83,7 +84,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Per il bonifico bancario mandiamo anche al cliente le coordinate per
+    // Per bonifico e PayPal mandiamo anche al cliente le istruzioni per
     // pagare. Se questa seconda email dovesse fallire non blocchiamo
     // l'ordine (il negoziante ha comunque ricevuto la notifica sopra e puo'
     // rispondere manualmente), logghiamo solo l'errore per diagnosi.
@@ -101,6 +102,24 @@ export async function POST(request: Request) {
         console.error(
           "Errore invio istruzioni bonifico al cliente:",
           bonificoResult.message
+        );
+      }
+    }
+
+    if (pagamento === "PayPal") {
+      const paypalResult = await sendPaypalInstructionsEmail({
+        cliente,
+        prodotti,
+        subtotale,
+        spedizione,
+        totale,
+        pagamento,
+      });
+
+      if (!paypalResult.success) {
+        console.error(
+          "Errore invio istruzioni PayPal al cliente:",
+          paypalResult.message
         );
       }
     }

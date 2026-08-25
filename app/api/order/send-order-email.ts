@@ -290,3 +290,91 @@ export async function sendBankTransferInstructionsEmail(
 
   return { success: true };
 }
+
+const PAYPAL_DETAILS = {
+  email: "emanueleesonia@virgilio.it",
+};
+
+export async function sendPaypalInstructionsEmail(
+  data: OrderEmailData
+): Promise<SendOrderEmailResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    return {
+      success: false,
+      message: "La chiave RESEND_API_KEY non è configurata.",
+    };
+  }
+
+  const { cliente, totale } = data;
+
+  const resend = new Resend(apiKey);
+
+  const causale = `Ordine ${cliente.nome} ${cliente.cognome}`;
+
+  const emailResult = await resend.emails.send({
+    from: "Magico Camillo <onboarding@resend.dev>",
+    to: [cliente.email],
+    replyTo: "magicocamillo@me.com",
+    subject: "Istruzioni per il pagamento con PayPal - Ordine Magico Camillo",
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:720px;margin:0 auto;color:#111111;">
+        <h1 style="color:#b08d1f;">
+          Grazie per il tuo ordine, ${escapeHtml(cliente.nome)}!
+        </h1>
+
+        <p>
+          Per completare l&rsquo;acquisto ti chiediamo di inviare un pagamento
+          PayPal a questo indirizzo:
+        </p>
+
+        <div style="margin-top:16px;padding:20px;background:#f5f5f5;border-radius:12px;">
+          <p>
+            <strong>Indirizzo PayPal:</strong>
+            ${escapeHtml(PAYPAL_DETAILS.email)}
+          </p>
+
+          <p>
+            <strong>Causale / nota:</strong>
+            ${escapeHtml(causale)}
+          </p>
+
+          <p style="font-size:21px;">
+            <strong>Importo:</strong>
+            ${formatPrice(Number(totale))}
+          </p>
+        </div>
+
+        <p style="margin-top:16px;">
+          Ti chiediamo di inviare il pagamento come &laquo;Invio a amici e
+          familiari&raquo; (senza commissioni), oppure come pagamento per
+          beni/servizi se preferisci essere coperto dalla protezione acquisti
+          di PayPal.
+        </p>
+
+        <p style="margin-top:24px;">
+          Appena il pagamento sar&agrave; ricevuto procederemo con la
+          spedizione del tuo ordine. Se hai domande rispondi pure a questa
+          email.
+        </p>
+      </div>
+    `,
+  });
+
+  if (emailResult.error) {
+    console.error(
+      "Errore Resend (istruzioni PayPal):",
+      emailResult.error
+    );
+
+    return {
+      success: false,
+      message:
+        emailResult.error.message ||
+        "Resend non ha accettato l’invio dell’email al cliente.",
+    };
+  }
+
+  return { success: true };
+}
