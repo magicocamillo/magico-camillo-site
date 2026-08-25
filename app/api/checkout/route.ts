@@ -3,7 +3,22 @@ import Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+// Creiamo il client Stripe solo quando serve davvero (dentro la richiesta),
+// non al caricamento del modulo: durante la build di Vercel, il modulo viene
+// eseguito per "raccogliere i dati della pagina" e in quella fase la chiave
+// segreta puo' non essere ancora disponibile, facendo fallire l'intera build.
+function getStripeClient(): Stripe {
+  if (!stripeClient) {
+    const apiKey = process.env.STRIPE_SECRET_KEY;
+    if (!apiKey) {
+      throw new Error("STRIPE_SECRET_KEY non configurata.");
+    }
+    stripeClient = new Stripe(apiKey);
+  }
+  return stripeClient;
+}
 
 // Stripe accetta al massimo 500 caratteri per ogni valore di "metadata".
 // Se superiamo il limite (es. carrello con molti prodotti o una nota lunga),
@@ -127,7 +142,7 @@ export async function POST(request: Request) {
       },
     ]);
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripeClient().checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
       line_items: lineItems,

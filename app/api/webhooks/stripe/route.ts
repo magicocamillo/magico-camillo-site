@@ -8,7 +8,20 @@ import {
 
 export const runtime = "nodejs";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+let stripeClient: Stripe | null = null;
+
+// Stessa logica del checkout: client creato al primo utilizzo, non al
+// caricamento del modulo, per non far fallire la build su Vercel.
+function getStripeClient(): Stripe {
+  if (!stripeClient) {
+    const apiKey = process.env.STRIPE_SECRET_KEY;
+    if (!apiKey) {
+      throw new Error("STRIPE_SECRET_KEY non configurata.");
+    }
+    stripeClient = new Stripe(apiKey);
+  }
+  return stripeClient;
+}
 
 export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
@@ -26,7 +39,7 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripeClient().webhooks.constructEvent(
       rawBody,
       signature,
       webhookSecret
