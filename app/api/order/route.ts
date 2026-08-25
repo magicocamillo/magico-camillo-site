@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { sendOrderConfirmationEmail } from "./send-order-email";
+import {
+  sendOrderConfirmationEmail,
+  sendBankTransferInstructionsEmail,
+} from "./send-order-email";
 
 export const runtime = "nodejs";
 
@@ -78,6 +81,28 @@ export async function POST(request: Request) {
         },
         { status: 500 }
       );
+    }
+
+    // Per il bonifico bancario mandiamo anche al cliente le coordinate per
+    // pagare. Se questa seconda email dovesse fallire non blocchiamo
+    // l'ordine (il negoziante ha comunque ricevuto la notifica sopra e puo'
+    // rispondere manualmente), logghiamo solo l'errore per diagnosi.
+    if (pagamento === "Bonifico bancario") {
+      const bonificoResult = await sendBankTransferInstructionsEmail({
+        cliente,
+        prodotti,
+        subtotale,
+        spedizione,
+        totale,
+        pagamento,
+      });
+
+      if (!bonificoResult.success) {
+        console.error(
+          "Errore invio istruzioni bonifico al cliente:",
+          bonificoResult.message
+        );
+      }
     }
 
     return NextResponse.json({
