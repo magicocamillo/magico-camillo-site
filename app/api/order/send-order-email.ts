@@ -91,7 +91,7 @@ export async function sendOrderConfirmationEmail(
     .join("");
 
   const emailResult = await resend.emails.send({
-    from: "Magico Camillo <onboarding@resend.dev>",
+    from: "Magico Camillo <ordini@magicocamillo.com>",
     to: ["magicocamillo@me.com"],
     replyTo: cliente.email,
     subject: `Nuovo ordine Boutique - ${cliente.nome} ${cliente.cognome}`,
@@ -224,7 +224,7 @@ export async function sendBankTransferInstructionsEmail(
   const causale = `Ordine ${cliente.nome} ${cliente.cognome}`;
 
   const emailResult = await resend.emails.send({
-    from: "Magico Camillo <onboarding@resend.dev>",
+    from: "Magico Camillo <ordini@magicocamillo.com>",
     to: [cliente.email],
     replyTo: "magicocamillo@me.com",
     subject: "Coordinate per il bonifico - Ordine Magico Camillo",
@@ -314,7 +314,7 @@ export async function sendPaypalInstructionsEmail(
   const causale = `Ordine ${cliente.nome} ${cliente.cognome}`;
 
   const emailResult = await resend.emails.send({
-    from: "Magico Camillo <onboarding@resend.dev>",
+    from: "Magico Camillo <ordini@magicocamillo.com>",
     to: [cliente.email],
     replyTo: "magicocamillo@me.com",
     subject: "Istruzioni per il pagamento con PayPal - Ordine Magico Camillo",

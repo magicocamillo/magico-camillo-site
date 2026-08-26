@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey);
 
     const result = await resend.emails.send({
-      from: "Magico Camillo <onboarding@resend.dev>",
+      from: "Magico Camillo <ordini@magicocamillo.com>",
       to: ["magicocamillo@me.com"],
       replyTo: email,
       subject: `Nuovo messaggio dal sito - ${oggetto}`,
