@@ -15,6 +15,24 @@ const testimonials = [
     category: "Pro Loco",
     text: "Ha trasformato una semplice serata di paese in un evento speciale. Pubblico numeroso, applausi continui e tantissimi complimenti.",
   },
+  // Le tre recensioni qui sotto sono vere recensioni Google a 5 stelle
+  // (le stesse gia' riportate, con nome e cognome, nella pagina /recensioni),
+  // scelte perche' piu' descrittive delle altre disponibili.
+  {
+    category: "Recensione Google",
+    autore: "Andrea Gazzieri",
+    text: "Fin dai primi minuti riesce a catturare l'attenzione dei piccoli e coinvolgere anche i grandi.",
+  },
+  {
+    category: "Recensione Google",
+    autore: "Alessandro Bonazza",
+    text: "Il suo spettacolo è talmente coinvolgente che anche gli adulti se lo godono.",
+  },
+  {
+    category: "Recensione Google",
+    autore: "Stefano Zanin",
+    text: "Mio figlio aspetta con impazienza lo spettacolo ogni anno.",
+  },
 ];
 
 export default function Testimonials() {
@@ -52,7 +70,7 @@ export default function Testimonials() {
 
           {testimonials.map((item) => (
             <AnimatedBox
-              key={item.category}
+              key={item.autore ?? item.category}
               whileHover={hoverLift}
               className="group rounded-[36px] border border-white/10 bg-white/5 p-10 backdrop-blur-xl shadow-stage transition-all duration-300 hover:-translate-y-1 hover:border-[#d4af37]/40 hover:bg-white/10"
             >
@@ -72,6 +90,12 @@ export default function Testimonials() {
               <p className="text-lg leading-9 text-white/80">
                 “{item.text}”
               </p>
+
+              {item.autore && (
+                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-white/50">
+                  — {item.autore}
+                </p>
+              )}
 
             </AnimatedBox>
           ))}
