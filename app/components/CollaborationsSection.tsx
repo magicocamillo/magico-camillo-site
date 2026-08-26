@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 type Collaboration = {
   name: string;
+  stars: string;
   location: string;
   image: string;
   imageHover?: string;
@@ -15,6 +16,7 @@ type Collaboration = {
 const collaborations: Collaboration[] = [
     {
     name: "Grand Hotel Piz Galin",
+    stars: "****S",
     location: "Andalo (TN)",
     image: "/images/collaborazioni/piz-galin.jpg",
       imageHover: "/images/collaborazioni/piz-galin-2.jpg",
@@ -24,6 +26,7 @@ const collaborations: Collaboration[] = [
   },
   {
     name: "Alpino Baby Family Hotel",
+    stars: "***",
     location: "Andalo (TN)",
     image: "/images/collaborazioni/alpino-baby-family.jpg",
           imageHover: "/images/collaborazioni/alpino-baby-family-2.jpg",
@@ -33,6 +36,7 @@ const collaborations: Collaboration[] = [
   },
   {
     name: "Astoria Comfort Hotel",
+    stars: "***",
     location: "Andalo (TN)",
     image: "/images/collaborazioni/astoria.jpg",
               imageHover: "/images/collaborazioni/astoria-2.jpg",
@@ -42,6 +46,7 @@ const collaborations: Collaboration[] = [
   },
   {
     name: "Hotel AlpHoliday Dolomiti",
+    stars: "****",
     location: "Dimaro Folgarida (TN)",
     image: "/images/collaborazioni/alpholiday.jpg",
               imageHover: "/images/collaborazioni/alpholiday-2.jpg",
@@ -51,6 +56,7 @@ const collaborations: Collaboration[] = [
   },
   {
     name: "Hotel Serena",
+    stars: "****",
     location: "Andalo (TN)",
     image: "/images/collaborazioni/hotel-serena.jpg",
               imageHover: "/images/collaborazioni/hotel-serena-2.jpg",
@@ -60,6 +66,7 @@ const collaborations: Collaboration[] = [
   },
   {
     name: "AKI Family Resort",
+    stars: "5*",
     location: "Meluno, Bressanone (BZ)",
     image: "/images/collaborazioni/aki.jpg",
               imageHover: "/images/collaborazioni/aki-2.jpg",
@@ -69,6 +76,7 @@ const collaborations: Collaboration[] = [
   },
   {
   name: "Gardea SoulFamily Resort",
+    stars: "5*",
   location: "Torbole sul Garda (TN)",
   image: "/images/collaborazioni/gardea-1.jpg",
   imageHover: "/images/collaborazioni/gardea-2.jpg",
@@ -304,8 +312,11 @@ export default function CollaborationsSection() {
         Collaborazione
       </p>
 
-      <h3 className="mt-5 text-4xl font-semibold text-white">
-        {hotel.name}
+      <h3 className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-4xl font-semibold text-white">
+        <span>{hotel.name}</span>
+        <span className="text-lg font-medium tracking-wide text-[#d4af37]">
+          {hotel.stars}
+        </span>
       </h3>
 
       <p className="mt-3 text-lg text-white/60">

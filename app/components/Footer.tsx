@@ -127,7 +127,7 @@ export default function Footer() {
 
             <p>
               <span className="font-semibold text-white">Sede:</span>{" "}
-              Rovereto (TN)
+              Via del Garda 44 bis, Rovereto (TN)
             </p>
           </div>
 
