@@ -92,21 +92,29 @@ const fotoRecensioni = [
     src: "/images/recensioni/recensione-arianna.jpg",
     autore: "Arianna Nicoli",
     alt: "Magico Camillo con un bambino durante uno spettacolo, foto da una recensione Google",
+    width: 1200,
+    height: 469,
   },
   {
     src: "/images/recensioni/recensione-bruno.jpg",
     autore: "Bruno Bottaro",
     alt: "Magico Camillo con una bambina dopo lo spettacolo, foto da una recensione Google",
+    width: 1200,
+    height: 1515,
   },
   {
     src: "/images/recensioni/recensione-ida.jpg",
     autore: "Ida Petruska",
     alt: "Magico Camillo con un bambino alla Tana di Zampillo, foto da una recensione Google",
+    width: 1200,
+    height: 505,
   },
   {
     src: "/images/recensioni/recensione-isabella.jpg",
     autore: "Isabella Calipa",
     alt: "Magico Camillo sul palco durante uno spettacolo, foto da una recensione Google",
+    width: 1200,
+    height: 519,
   },
 ];
 
@@ -289,7 +297,7 @@ export default function RecensioniPage() {
 
           </div>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
             {fotoRecensioni.map((foto) => (
 
@@ -298,13 +306,14 @@ export default function RecensioniPage() {
                 className="group overflow-hidden rounded-[28px] border border-white/10 bg-black/40"
               >
 
-                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <div className="w-full overflow-hidden">
                   <Image
                     src={foto.src}
                     alt={foto.alt}
-                    fill
+                    width={foto.width}
+                    height={foto.height}
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition duration-500 group-hover:scale-105"
+                    className="h-auto w-full transition duration-500 group-hover:scale-105"
                   />
                 </div>
 
