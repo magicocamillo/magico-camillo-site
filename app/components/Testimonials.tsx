@@ -15,13 +15,14 @@ const testimonials = [
     category: "Pro Loco",
     text: "Ha trasformato una semplice serata di paese in un evento speciale. Pubblico numeroso, applausi continui e tantissimi complimenti.",
   },
-  // Le tre recensioni qui sotto sono vere recensioni Google a 5 stelle
-  // (le stesse gia' riportate, con nome e cognome, nella pagina /recensioni),
-  // scelte perche' piu' descrittive delle altre disponibili.
+  // Le sei recensioni qui sotto sono vere recensioni Google a 5 stelle,
+  // scelte tra quelle piu' descrittive/corpose della scheda Google del
+  // business (40 recensioni, 4,8 stelle) - escluse le recensioni con
+  // riserve/critiche anche se non palesemente negative.
   {
     category: "Recensione Google",
     autore: "Andrea Gazzieri",
-    text: "Fin dai primi minuti riesce a catturare l'attenzione dei piccoli e coinvolgere anche i grandi.",
+    text: "Fin dai primi minuti riesce a catturare l'attenzione dei piccoli e a coinvolgere anche i grandi con simpatia, ritmo e tanta allegria.",
   },
   {
     category: "Recensione Google",
@@ -32,6 +33,21 @@ const testimonials = [
     category: "Recensione Google",
     autore: "Stefano Zanin",
     text: "Mio figlio aspetta con impazienza lo spettacolo ogni anno.",
+  },
+  {
+    category: "Recensione Google",
+    autore: "Giampaolo Maietta",
+    text: "Fantastico intrattenimento! Magico Camillo ha conquistato tutti con la sua simpatia e i suoi giochi di magia, coinvolgendo i bambini dall'inizio alla fine e creando un'atmosfera di allegria e stupore.",
+  },
+  {
+    category: "Recensione Google",
+    autore: "Giorgia Rapone",
+    text: "Magico Camillo eccezionale: abbiamo avuto la fortuna di incontrarlo anche quest'anno, quattro anni di fila, e ogni volta uno spettacolo diverso. Amato da grandi e piccini.",
+  },
+  {
+    category: "Recensione Google",
+    autore: "Maga Gaia",
+    text: "Ha uno stile assolutamente unico, mescola la magia con le sue competenze di teatro, clowneria, giocoleria e tecnologia. Diverso da qualsiasi altro intrattenitore per bambini che abbia mai visto.",
   },
 ];
 
