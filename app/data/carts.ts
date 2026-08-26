@@ -73,6 +73,16 @@ export function addToCart(item: CartItem) {
     window.dispatchEvent(
       new Event("cartUpdated")
     );
+
+    // Evento dedicato per mostrare il popup "Evviva! ... aggiunto al
+    // carrello" (vedi CartToast.tsx), separato da cartUpdated perche'
+    // quest'ultimo scatta anche per rimozioni/svuotamento, dove non vogliamo
+    // il popup di conferma aggiunta.
+    window.dispatchEvent(
+      new CustomEvent("cart:item-added", {
+        detail: { name: item.name },
+      })
+    );
   }
 
 }

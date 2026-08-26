@@ -19,8 +19,6 @@ export default function BookHero({ product }: Props) {
       quantity: 1,
       image: product.image,
     });
-
-    alert("Libro aggiunto al carrello");
   }
 
   return (

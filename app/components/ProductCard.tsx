@@ -25,8 +25,6 @@ export default function ProductCard({ product }: Props) {
       quantity: 1,
       image: product.image,
     });
-
-    window.alert(`${product.name} è stato aggiunto al carrello.`);
   }
 
   return (

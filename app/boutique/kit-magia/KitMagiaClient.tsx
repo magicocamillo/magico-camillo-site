@@ -47,8 +47,6 @@ function KitMagiaContent({
     });
 
     window.dispatchEvent(new Event("cartUpdated"));
-
-    window.alert("Kit Magia aggiunto al carrello");
   }
 
   function formatPrice(value: number) {

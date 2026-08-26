@@ -62,8 +62,6 @@ const demoVideo = "/video/products/bacchetta-anteprima.mp4";
       image: product.image,
     });
 
-    window.alert(`${product.name} aggiunto al carrello`);
-
     window.dispatchEvent(new Event("cartUpdated"));
   }
 
