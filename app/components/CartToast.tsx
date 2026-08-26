@@ -13,6 +13,11 @@ type ToastItem = {
 // carrello. Ascolta l'evento "cart:item-added" emesso da addToCart in
 // app/data/carts.ts, quindi funziona da qualunque pagina/pulsante "Aggiungi"
 // senza bisogno di ripetere la logica in ogni componente prodotto.
+//
+// Grande e centrato nello schermo (non un angolo) cosi' non passa
+// inosservato, ma resta "pointer-events-none" sullo sfondo: non blocca i
+// click sul resto della pagina, si vede e basta finche' non sparisce da
+// solo dopo circa 4 secondi.
 export default function CartToast() {
   const [queue, setQueue] = useState<ToastItem[]>([]);
   const [visible, setVisible] = useState(false);
@@ -55,13 +60,15 @@ export default function CartToast() {
     if (dismissTimeout.current) clearTimeout(dismissTimeout.current);
     if (advanceTimeout.current) clearTimeout(advanceTimeout.current);
 
+    // Resta visibile a lungo (4s pieni) prima di iniziare l'uscita, poi
+    // aspetta la fine dell'animazione di uscita per passare al prossimo.
     dismissTimeout.current = setTimeout(() => {
       setVisible(false);
 
       advanceTimeout.current = setTimeout(() => {
         setQueue((q) => q.slice(1));
       }, 300);
-    }, 2800);
+    }, 4000);
 
     return () => {
       cancelAnimationFrame(enterFrame);
@@ -77,25 +84,32 @@ export default function CartToast() {
   return (
     <div
       aria-live="polite"
-      className="pointer-events-none fixed inset-x-0 bottom-6 z-[100] flex justify-center px-4 sm:bottom-8 sm:justify-end sm:pr-8"
+      className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center px-4"
     >
+      {/* Sfondo sfumato dietro al popup: solo visivo, non blocca i click */}
       <div
-        className={`pointer-events-auto flex max-w-sm items-center gap-4 rounded-2xl border border-[#d4af37]/40 bg-black/90 px-6 py-4 shadow-[0_15px_45px_rgba(0,0,0,0.55)] backdrop-blur transition-all duration-300 ease-out motion-reduce:transition-none ${
+        className={`pointer-events-none absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+          visible ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      <div
+        className={`pointer-events-auto relative flex w-full max-w-lg flex-col items-center gap-5 rounded-[32px] border border-[#d4af37]/50 bg-black px-10 py-12 text-center shadow-[0_30px_90px_rgba(0,0,0,0.65)] transition-all duration-300 ease-out motion-reduce:transition-none ${
           visible
-            ? "translate-y-0 opacity-100 scale-100 sm:translate-x-0"
-            : "translate-y-4 opacity-0 scale-95 sm:translate-x-6 sm:translate-y-0"
+            ? "scale-100 opacity-100"
+            : "scale-90 opacity-0"
         }`}
       >
-        <span className="text-2xl" aria-hidden="true">
+        <span className="text-6xl" aria-hidden="true">
           ✨
         </span>
 
-        <div className="min-w-0">
-          <p className="font-bold uppercase tracking-wide text-[#d4af37]">
+        <div>
+          <p className="text-3xl font-extrabold uppercase tracking-wide text-[#d4af37] sm:text-4xl">
             Evviva!
           </p>
 
-          <p className="mt-0.5 text-sm leading-snug text-white/80">
+          <p className="mt-3 text-lg leading-relaxed text-white/85 sm:text-xl">
             <span className="font-semibold text-white">{current.name}</span>{" "}
             è stato aggiunto al carrello.
           </p>
@@ -103,7 +117,7 @@ export default function CartToast() {
 
         <Link
           href="/cart"
-          className="ml-auto shrink-0 whitespace-nowrap rounded-full border border-[#d4af37]/50 px-3 py-1.5 text-xs font-semibold text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
+          className="mt-2 rounded-full bg-[#d4af37] px-8 py-3 text-base font-bold text-black transition hover:scale-[1.03] hover:bg-[#e5c24d]"
         >
           Vai al carrello
         </Link>
