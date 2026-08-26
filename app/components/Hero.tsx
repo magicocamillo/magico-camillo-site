@@ -78,7 +78,7 @@ export default function Hero() {
 >
   Magico Camillo
 
-  <span className="mt-8 block bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent text-3xl font-semibold leading-tight sm:text-4xl xl:text-5xl">
+  <span className="mt-8 block bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent text-3xl font-semibold leading-snug sm:text-4xl sm:leading-tight xl:text-5xl">
     Spettacoli di magia per bambini, famiglie,
     <br />
     Family Hotel, resort, teatri ed eventi
