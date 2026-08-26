@@ -304,7 +304,7 @@ export default function RecensioniPage() {
     </p>
 
     <a
-  href="https://g.page/r/CYYOpc2bnpwMEBM/review"
+  href="https://share.google/1l5u7JiEsI0LrErBM"
   target="_blank"
   rel="noopener noreferrer"
   className="mt-10 inline-flex min-h-14 items-center justify-center rounded-full bg-[#d4af37] px-10 py-4 font-semibold text-black transition-all duration-300 hover:scale-[1.03] hover:bg-[#e4c457] shadow-lg"
