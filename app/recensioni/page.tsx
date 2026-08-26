@@ -5,12 +5,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Recensioni",
   description:
-    "4,7 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
+    "4,8 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
   alternates: { canonical: "/recensioni" },
   openGraph: {
     title: "Recensioni | Magico Camillo",
     description:
-      "4,7 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
+      "4,8 su 5 stelle e oltre 3.000 spettacoli realizzati: leggi le recensioni di famiglie, hotel e organizzatori che hanno vissuto uno spettacolo di Magico Camillo.",
     url: "/recensioni",
     images: [{ url: "/images/camillo/panorama.jpeg", width: 2176, height: 1445, alt: "Magico Camillo davanti al pubblico" }],
   },
@@ -87,6 +87,29 @@ const parole = [
   "Ricordi",
 ];
 
+const fotoRecensioni = [
+  {
+    src: "/images/recensioni/recensione-arianna.jpg",
+    autore: "Arianna Nicoli",
+    alt: "Magico Camillo con un bambino durante uno spettacolo, foto da una recensione Google",
+  },
+  {
+    src: "/images/recensioni/recensione-bruno.jpg",
+    autore: "Bruno Bottaro",
+    alt: "Magico Camillo con una bambina dopo lo spettacolo, foto da una recensione Google",
+  },
+  {
+    src: "/images/recensioni/recensione-ida.jpg",
+    autore: "Ida Petruska",
+    alt: "Magico Camillo con un bambino alla Tana di Zampillo, foto da una recensione Google",
+  },
+  {
+    src: "/images/recensioni/recensione-isabella.jpg",
+    autore: "Isabella Calipa",
+    alt: "Magico Camillo sul palco durante uno spettacolo, foto da una recensione Google",
+  },
+];
+
 export default function RecensioniPage() {
   return (
     <main className="overflow-hidden bg-black text-white">
@@ -132,7 +155,7 @@ export default function RecensioniPage() {
 
           <div>
             <p className="text-4xl font-semibold text-[#d4af37]">
-              4,7 su 5
+              4,8 su 5
             </p>
             <p className="mt-2 text-white/60">
               Valutazione su Google
@@ -244,7 +267,63 @@ export default function RecensioniPage() {
         </div>
 
       </section>
-            <section className="px-6 py-24 sm:px-10 lg:px-14 lg:py-32">
+
+      <section className="px-6 py-24 sm:px-10 lg:px-14 lg:py-32">
+
+        <div className="mx-auto max-w-7xl">
+
+          <div className="max-w-3xl">
+
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
+              Momenti veri
+            </p>
+
+            <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+              Le foto di chi ha lasciato una recensione
+            </h2>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
+              Scatti pubblicati direttamente dalle famiglie su Google.
+              I volti dei bambini sono stati sfocati per tutelare la loro privacy.
+            </p>
+
+          </div>
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+            {fotoRecensioni.map((foto) => (
+
+              <figure
+                key={foto.src}
+                className="group overflow-hidden rounded-[28px] border border-white/10 bg-black/40"
+              >
+
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <Image
+                    src={foto.src}
+                    alt={foto.alt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <figcaption className="flex items-center justify-between gap-2 px-5 py-4">
+                  <span className="text-sm text-white/60">{foto.autore}</span>
+                  <span className="text-xs tracking-[0.2em] text-[#d4af37]">★★★★★</span>
+                </figcaption>
+
+              </figure>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section className="px-6 py-24 sm:px-10 lg:px-14 lg:py-32">
 
         <div className="mx-auto max-w-7xl">
 
