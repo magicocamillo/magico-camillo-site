@@ -59,7 +59,7 @@ export default function Hero() {
   </motion.p>
 
  <motion.h1
-  className="mt-3 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl"
+  className="mt-5 lg:mt-3 text-5xl font-semibold leading-[0.92] text-white sm:text-6xl xl:text-7xl"
   initial={{
     opacity: 0,
     filter: "blur(18px)",
@@ -78,13 +78,13 @@ export default function Hero() {
 >
   Magico Camillo
 
-  <span className="mt-8 block bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent text-3xl font-semibold leading-snug sm:text-4xl sm:leading-tight xl:text-5xl">
+  <span className="mt-10 lg:mt-8 block bg-gradient-to-r from-[#d4af37] to-[#fff3c0] bg-clip-text text-transparent text-3xl font-semibold leading-snug sm:text-4xl sm:leading-tight xl:text-5xl">
     Spettacoli di magia per bambini, famiglie,
     <br />
     Family Hotel, resort, teatri ed eventi
   </span>
 
-  <span className="mt-8 block text-xl font-normal leading-relaxed text-white/85 sm:text-2xl">
+  <span className="mt-10 lg:mt-8 block text-xl font-normal leading-relaxed text-white/85 sm:text-2xl">
     La magia che emoziona,
     <br />
     fa ridere
@@ -94,7 +94,7 @@ export default function Hero() {
 </motion.h1>
 
   <motion.p
-    className="mt-6 max-w-xl text-xl leading-9 text-white/70"
+    className="mt-8 lg:mt-6 max-w-xl text-xl leading-9 text-white/70"
     initial={{ opacity: 0, y: 15 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{
