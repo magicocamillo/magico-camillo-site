@@ -9,6 +9,7 @@ export interface Product {
   description: string;
   features: string[];
   featured?: boolean;
+  video?: string;
 }
 
 export const products: Product[] = [
@@ -23,6 +24,7 @@ export const products: Product[] = [
       "/images/products/bauletto-magico-2.jpg",
       "/images/products/bauletto-magico-3.jpg",
     ],
+    video: "/video/products/bauletto-magico-anteprima.mp4",
     shortDescription:
       "Un bauletto con i Best Seller del Magico Camillo, giochi sorprendenti e video istruzioni.",
     description:
@@ -47,6 +49,7 @@ export const products: Product[] = [
       "/images/products/bacchetta-magica-1.jpg",
       "/images/products/bacchetta-magica-2.jpg",
     ],
+    video: "/video/products/bacchetta-anteprima.mp4",
     shortDescription:
       "Lo strumento più importante di ogni mago, subito pronto per creare stupore e sorrisi.",
     description:

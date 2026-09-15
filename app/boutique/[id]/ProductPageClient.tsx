@@ -15,9 +15,9 @@ export default function ProductPageClient() {
   const [selectedImage, setSelectedImage] = useState("");
   const [showVideo, setShowVideo] = useState(false);
 
-  const hasDemoVideo = product?.id === "bacchetta-magica";
+  const hasDemoVideo = Boolean(product?.video);
 
-const demoVideo = "/video/products/bacchetta-anteprima.mp4";
+  const demoVideo = product?.video || "";
 
   useEffect(() => {
     if (product) {
