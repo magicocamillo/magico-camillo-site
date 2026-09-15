@@ -27,11 +27,21 @@ export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-  console.log("[DEBUG webhook] hasSignature:", Boolean(signature), "hasSecret:", Boolean(webhookSecret), "secretLength:", webhookSecret ? webhookSecret.length : 0, "secretPrefix:", webhookSecret ? webhookSecret.slice(0, 8) : null);
-
   if (!signature || !webhookSecret) {
     return NextResponse.json(
-      { success: false, message: "Webhook non configurato correttamente." },
+      {
+        success: false,
+        message: "Webhook non configurato correttamente.",
+        debug: {
+          hasSignature: Boolean(signature),
+          hasSecret: Boolean(webhookSecret),
+          secretLength: webhookSecret ? webhookSecret.length : 0,
+          secretPrefix: webhookSecret ? webhookSecret.slice(0, 10) : null,
+          stripeEnvKeys: Object.keys(process.env).filter((k) => k.includes("STRIPE")),
+          nodeEnv: process.env.NODE_ENV,
+          vercelEnv: process.env.VERCEL_ENV,
+        },
+      },
       { status: 400 }
     );
   }
