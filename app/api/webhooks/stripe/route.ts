@@ -29,26 +29,7 @@ export async function POST(request: Request) {
 
   if (!signature || !webhookSecret) {
     return NextResponse.json(
-      {
-        success: false,
-        message: "Webhook non configurato correttamente.",
-        debug: {
-          hasSignature: Boolean(signature),
-          hasSecret: Boolean(webhookSecret),
-          secretLength: webhookSecret ? webhookSecret.length : 0,
-          secretPrefix: webhookSecret ? webhookSecret.slice(0, 10) : null,
-          stripeEnvKeys: Object.keys(process.env).filter((k) => k.includes("STRIPE")),
-          stripeEnvKeysCaseInsensitive: Object.keys(process.env).filter((k) =>
-            k.toUpperCase().includes("STRIPE")
-          ),
-          webhookOrSecretKeys: Object.keys(process.env).filter((k) =>
-            /WEBHOOK|SECRET/i.test(k)
-          ),
-          totalEnvVarCount: Object.keys(process.env).length,
-          nodeEnv: process.env.NODE_ENV,
-          vercelEnv: process.env.VERCEL_ENV,
-        },
-      },
+      { success: false, message: "Webhook non configurato correttamente." },
       { status: 400 }
     );
   }
