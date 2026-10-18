@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CookiePreferencesLink from "./CookiePreferencesLink";
 
 export default function Footer() {
   return (
@@ -156,6 +157,13 @@ export default function Footer() {
           © {new Date().getFullYear()} Magico Camillo · Tutti i diritti
           riservati.
         </p>
+
+        <div className="mt-2 flex justify-center gap-4 text-sm text-white/40">
+          <Link className="transition hover:text-[#d4af37]" href="/cookie-policy">
+            Cookie policy
+          </Link>
+          <CookiePreferencesLink />
+        </div>
       </div>
 
       <a
