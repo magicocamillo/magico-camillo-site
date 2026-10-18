@@ -1,3 +1,5 @@
+import { trackPixel } from "../lib/metaPixel";
+
 export interface CartItem {
   id: string;
   name: string;
@@ -83,6 +85,14 @@ export function addToCart(item: CartItem) {
         detail: { name: item.name },
       })
     );
+
+    trackPixel("AddToCart", {
+      content_ids: [item.id],
+      content_name: item.name,
+      content_type: "product",
+      value: item.price,
+      currency: "EUR",
+    });
   }
 
 }

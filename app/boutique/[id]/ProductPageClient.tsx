@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { addToCart } from "../../data/carts";
 import { products } from "../../data/products";
+import { trackPixel } from "../../lib/metaPixel";
 
 export default function ProductPageClient() {
   const params = useParams();
@@ -23,6 +24,18 @@ export default function ProductPageClient() {
     if (product) {
       setSelectedImage(product.images?.[0] || product.image);
       setShowVideo(false);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (product) {
+      trackPixel("ViewContent", {
+        content_ids: [product.id],
+        content_name: product.name,
+        content_type: "product",
+        value: product.price,
+        currency: "EUR",
+      });
     }
   }, [product]);
 

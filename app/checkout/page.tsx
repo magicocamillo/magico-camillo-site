@@ -8,6 +8,11 @@ import {
   getCart,
   CartItem,
 } from "../data/carts";
+import {
+  productsToPixel,
+  savePendingPurchase,
+  trackPixel,
+} from "../lib/metaPixel";
 
 const SHIPPING_COST = 7;
 const ORDER_CONFIRMATION_KEY = "magico-camillo-ultimo-ordine";
@@ -96,6 +101,8 @@ export default function CheckoutPage() {
       paese: "Italia",
     };
 
+    trackPixel("InitiateCheckout", productsToPixel(items, finalTotal));
+
     if (payment === "Carta di credito") {
       try {
         setSending(true);
@@ -115,6 +122,7 @@ export default function CheckoutPage() {
         const result = await response.json();
 
         if (result.url) {
+          savePendingPurchase(items, finalTotal);
           window.location.href = result.url;
           return;
         }

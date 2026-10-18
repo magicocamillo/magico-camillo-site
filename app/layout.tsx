@@ -9,6 +9,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CartToast from "./components/CartToast";
+import MetaPixel from "./components/MetaPixel";
 // import SecretMagicButton from "./components/SecretMagicButton";
 
 const geistSans = Geist({
@@ -160,6 +161,8 @@ export default function RootLayout({
         <Footer />
 
         <CartToast />
+
+        <MetaPixel />
 
         {/* <SecretMagicButton /> */}
       </body>

@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import {
+  productsToPixel,
+  readPendingPurchase,
+  trackPurchaseOnce,
+} from "../lib/metaPixel";
 
 const ORDER_CONFIRMATION_KEY = "magico-camillo-ultimo-ordine";
 
@@ -38,16 +43,34 @@ function OrdineConfermatoContent() {
       ORDER_CONFIRMATION_KEY
     );
 
+    let parsedOrder: ConfirmationData | null = null;
+
     if (savedOrder) {
       try {
-        setOrder(JSON.parse(savedOrder) as ConfirmationData);
+        parsedOrder = JSON.parse(savedOrder) as ConfirmationData;
+        setOrder(parsedOrder);
       } catch {
         setOrder(null);
       }
     }
 
+    // Pixel Meta: segnala l'acquisto una sola volta per ordine.
+    // Carta (Stripe): ritorno con session_id, valore salvato prima del pagamento.
+    // Bonifico/PayPal: dati dell'ordine appena inviato.
+    if (sessionId) {
+      trackPurchaseOnce(
+        `stripe:${sessionId}`,
+        readPendingPurchase() ?? { currency: "EUR" }
+      );
+    } else if (parsedOrder) {
+      trackPurchaseOnce(
+        `ordine:${parsedOrder.data}`,
+        productsToPixel(parsedOrder.prodotti, parsedOrder.totale)
+      );
+    }
+
     setChecked(true);
-  }, []);
+  }, [sessionId]);
 
   function formatPrice(value: number) {
     return new Intl.NumberFormat("it-IT", {
