@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import {
   sendOrderConfirmationEmail,
+  sendThankYouEmail,
   type OrderCustomer,
   type OrderProduct,
 } from "../../order/send-order-email";
@@ -78,19 +79,31 @@ export async function POST(request: Request) {
       const subtotale = (session.amount_subtotal ?? 0) / 100;
       const spedizione = totale - subtotale;
 
-      const emailResult = await sendOrderConfirmationEmail({
+      const orderData = {
         cliente,
         prodotti,
         subtotale,
         spedizione,
         totale,
         pagamento: "Carta di credito",
-      });
+      };
+
+      const emailResult = await sendOrderConfirmationEmail(orderData);
 
       if (!emailResult.success) {
         console.error(
           "Errore invio email ordine da webhook Stripe:",
           emailResult.message
+        );
+      }
+
+      // Email di ringraziamento al cliente
+      const thankYouResult = await sendThankYouEmail(orderData);
+
+      if (!thankYouResult.success) {
+        console.error(
+          "Errore invio email di ringraziamento al cliente:",
+          thankYouResult.message
         );
       }
     } catch (error) {

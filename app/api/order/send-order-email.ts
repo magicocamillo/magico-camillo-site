@@ -378,3 +378,84 @@ export async function sendPaypalInstructionsEmail(
 
   return { success: true };
 }
+
+export async function sendThankYouEmail(
+  data: OrderEmailData
+): Promise<SendOrderEmailResult> {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    return {
+      success: false,
+      message: "La chiave RESEND_API_KEY non è configurata.",
+    };
+  }
+
+  const { cliente, prodotti, totale } = data;
+
+  if (!cliente.email) {
+    return { success: false, message: "Email del cliente mancante." };
+  }
+
+  const resend = new Resend(apiKey);
+
+  const prodottiHtml = prodotti
+    .map(
+      (item) => `
+        <li>${escapeHtml(item.quantity)} &times; ${escapeHtml(item.name)}</li>
+      `
+    )
+    .join("");
+
+  const emailResult = await resend.emails.send({
+    from: "Magico Camillo <ordini@magicocamillo.com>",
+    to: [cliente.email],
+    replyTo: "magicocamillo@me.com",
+    subject: "Grazie per il tuo acquisto! - Magico Camillo",
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:720px;margin:0 auto;color:#111111;">
+        <h1 style="color:#b08d1f;">
+          Grazie per il tuo acquisto, ${escapeHtml(cliente.nome)}!
+        </h1>
+
+        <p>
+          Abbiamo ricevuto il tuo ordine e il pagamento &egrave; andato a buon fine.
+          Il pacco partir&agrave; al pi&ugrave; presto.
+        </p>
+
+        <div style="margin-top:16px;padding:20px;background:#f5f5f5;border-radius:12px;">
+          <p><strong>Il tuo ordine:</strong></p>
+          <ul>
+            ${prodottiHtml}
+          </ul>
+          <p>
+            <strong>Totale pagato:</strong>
+            ${formatPrice(Number(totale))}
+          </p>
+        </div>
+
+        <p style="margin-top:24px;">
+          Se hai domande rispondi pure a questa email.
+        </p>
+
+        <p>
+          Un saluto magico,<br>
+          Magico Camillo
+        </p>
+      </div>
+    `,
+  });
+
+  if (emailResult.error) {
+    console.error("Errore Resend (ringraziamento cliente):", emailResult.error);
+
+    return {
+      success: false,
+      message:
+        emailResult.error.message ||
+        "Resend non ha accettato l’invio dell’email al cliente.",
+    };
+  }
+
+  return { success: true };
+}
